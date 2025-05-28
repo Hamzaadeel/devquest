@@ -16,8 +16,11 @@ import {
   BookOpen,
   Mail,
   User,
+  Moon,
+  Sun,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTheme } from "next-themes";
 
 const topicsData = [
   {
@@ -207,6 +210,7 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
+  const { theme, setTheme } = useTheme();
 
   const handleMouseEnter = (dropdown: string) => {
     if (hoverTimeout) {
@@ -223,11 +227,11 @@ export default function Navbar() {
   };
 
   const renderMegaMenu = (data: typeof topicsData) => (
-    <div className="p-8">
+    <div className="p-8 overflow-y-auto max-h-96">
       <div className="flex flex-wrap gap-8">
         {data.map((category) => (
           <div key={category.category} className="min-w-[200px] flex-1">
-            <h3 className="font-semibold text-gray-900 mb-4 text-sm uppercase tracking-wide">
+            <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-4 text-sm uppercase tracking-wide">
               {category.category}
             </h3>
             <div className="space-y-3">
@@ -235,13 +239,13 @@ export default function Navbar() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="block p-3 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-200 group"
+                  className="block p-3 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-gray-800 dark:hover:to-gray-900 transition-all duration-200 group"
                   onClick={() => setActiveDropdown(null)}
                 >
-                  <div className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors">
+                  <div className="font-medium text-gray-800 dark:text-gray-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     {item.name}
                   </div>
-                  <div className="text-xs text-gray-500 mt-1">
+                  <div className="text-xs text-gray-500 dark:text-gray-300 mt-1">
                     {item.description}
                   </div>
                 </Link>
@@ -254,17 +258,17 @@ export default function Navbar() {
   );
 
   return (
-    <nav className="bg-white/80 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-50 shadow-sm">
+    <nav className="bg-white/80 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-800/70 sticky top-0 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center space-x-3 group">
               <div className="relative">
-                <Code className="h-8 w-8 text-blue-600 group-hover:scale-110 transition-transform duration-200" />
+                <Code className="h-8 w-8 text-blue-600 group-hover:scale-110 transition-transform duration-200 dark:text-blue-400" />
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full opacity-20 group-hover:opacity-30 transition-opacity duration-200 blur"></div>
               </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-300 dark:via-purple-400 dark:to-indigo-400">
                 DevQuest
               </span>
             </Link>
@@ -278,7 +282,7 @@ export default function Navbar() {
               onMouseEnter={() => handleMouseEnter("topics")}
               onMouseLeave={handleMouseLeave}
             >
-              <button className="flex items-center space-x-1 text-gray-700 hover:text-blue-600 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-gray-50">
+              <button className="flex items-center space-x-1 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">
                 <Brain className="h-4 w-4" />
                 <span>Topics</span>
                 <ChevronDown
@@ -288,7 +292,7 @@ export default function Navbar() {
                 />
               </button>
               {activeDropdown === "topics" && (
-                <div className="fixed left-1/2 transform -translate-x-1/2 mt-2 w-screen max-w-4xl bg-white rounded-xl shadow-2xl border border-gray-100 animate-in slide-in-from-top-2 duration-200">
+                <div className="fixed left-1/2 transform -translate-x-1/2 mt-2 w-screen max-w-4xl bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-100 dark:border-gray-800 animate-in slide-in-from-top-2 duration-200">
                   {renderMegaMenu(topicsData)}
                 </div>
               )}
@@ -300,7 +304,7 @@ export default function Navbar() {
               onMouseEnter={() => handleMouseEnter("practice")}
               onMouseLeave={handleMouseLeave}
             >
-              <button className="flex items-center space-x-1 text-gray-700 hover:text-blue-600 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-gray-50">
+              <button className="flex items-center space-x-1 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">
                 <Target className="h-4 w-4" />
                 <span>Practice</span>
                 <ChevronDown
@@ -310,7 +314,7 @@ export default function Navbar() {
                 />
               </button>
               {activeDropdown === "practice" && (
-                <div className="fixed left-1/2 transform -translate-x-1/2 mt-2 w-screen max-w-4xl bg-white rounded-xl shadow-2xl border border-gray-100 animate-in slide-in-from-top-2 duration-200">
+                <div className="fixed left-1/2 transform -translate-x-1/2 mt-2 w-screen max-w-4xl bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-100 dark:border-gray-800 animate-in slide-in-from-top-2 duration-200">
                   {renderMegaMenu(practiceData)}
                 </div>
               )}
@@ -322,7 +326,7 @@ export default function Navbar() {
               onMouseEnter={() => handleMouseEnter("resources")}
               onMouseLeave={handleMouseLeave}
             >
-              <button className="flex items-center space-x-1 text-gray-700 hover:text-blue-600 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-gray-50">
+              <button className="flex items-center space-x-1 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">
                 <BookOpen className="h-4 w-4" />
                 <span>Resources</span>
                 <ChevronDown
@@ -332,7 +336,7 @@ export default function Navbar() {
                 />
               </button>
               {activeDropdown === "resources" && (
-                <div className="fixed left-1/2 transform -translate-x-1/2 mt-2 w-screen max-w-4xl bg-white rounded-xl shadow-2xl border border-gray-100 animate-in slide-in-from-top-2 duration-200">
+                <div className="fixed left-1/2 transform -translate-x-1/2 mt-2 w-screen max-w-4xl bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-100 dark:border-gray-800 animate-in slide-in-from-top-2 duration-200">
                   {renderMegaMenu(resourcesData)}
                 </div>
               )}
@@ -341,14 +345,14 @@ export default function Navbar() {
             {/* Simple Links */}
             <Link
               href="/about"
-              className="flex items-center space-x-1 text-gray-700 hover:text-blue-600 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-gray-50"
+              className="flex items-center space-x-1 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800"
             >
               <User className="h-4 w-4" />
               <span>About</span>
             </Link>
             <Link
               href="/contact"
-              className="flex items-center space-x-1 text-gray-700 hover:text-blue-600 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-gray-50"
+              className="flex items-center space-x-1 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800"
             >
               <Mail className="h-4 w-4" />
               <span>Contact</span>
@@ -359,7 +363,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center space-x-4">
             <Button
               asChild
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 dark:from-blue-500 dark:to-purple-700 dark:hover:from-blue-600 dark:hover:to-purple-800"
             >
               <Link
                 href="/interview-prep"
@@ -369,13 +373,25 @@ export default function Navbar() {
                 <span>Start Interview Prep</span>
               </Link>
             </Button>
+            {/* Dark Mode Toggle */}
+            <button
+              aria-label="Toggle Dark Mode"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+            >
+              {theme === "dark" ? (
+                <Sun className="w-5 h-5 text-yellow-400" />
+              ) : (
+                <Moon className="w-5 h-5 text-gray-700" />
+              )}
+            </button>
           </div>
 
           {/* Mobile menu button */}
           <div className="lg:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-700 hover:text-blue-600 p-2 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+              className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200"
             >
               {isMobileMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -388,7 +404,7 @@ export default function Navbar() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden border-t border-gray-200/50 bg-white/95 backdrop-blur-sm">
+          <div className="lg:hidden border-t border-gray-200/50 dark:border-gray-800 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm">
             <div className="px-2 pt-4 pb-6 space-y-2">
               <MobileDropdown
                 title="Topics"
@@ -396,7 +412,7 @@ export default function Navbar() {
               >
                 {topicsData.map((category) => (
                   <div key={category.category} className="mb-6">
-                    <h4 className="font-semibold text-gray-900 mb-3 text-sm uppercase tracking-wide">
+                    <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-3 text-sm uppercase tracking-wide">
                       {category.category}
                     </h4>
                     <div className="space-y-1">
@@ -404,11 +420,13 @@ export default function Navbar() {
                         <Link
                           key={item.name}
                           href={item.href}
-                          className="block px-4 py-3 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                          className="block px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
-                          <div className="font-medium">{item.name}</div>
-                          <div className="text-xs text-gray-500 mt-1">
+                          <div className="font-medium text-gray-800 dark:text-gray-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            {item.name}
+                          </div>
+                          <div className="text-xs text-gray-500 dark:text-gray-300 mt-1">
                             {item.description}
                           </div>
                         </Link>
@@ -424,7 +442,7 @@ export default function Navbar() {
               >
                 {practiceData.map((category) => (
                   <div key={category.category} className="mb-6">
-                    <h4 className="font-semibold text-gray-900 mb-3 text-sm uppercase tracking-wide">
+                    <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-3 text-sm uppercase tracking-wide">
                       {category.category}
                     </h4>
                     <div className="space-y-1">
@@ -432,11 +450,13 @@ export default function Navbar() {
                         <Link
                           key={item.name}
                           href={item.href}
-                          className="block px-4 py-3 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                          className="block px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
-                          <div className="font-medium">{item.name}</div>
-                          <div className="text-xs text-gray-500 mt-1">
+                          <div className="font-medium text-gray-800 dark:text-gray-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            {item.name}
+                          </div>
+                          <div className="text-xs text-gray-500 dark:text-gray-300 mt-1">
                             {item.description}
                           </div>
                         </Link>
@@ -452,7 +472,7 @@ export default function Navbar() {
               >
                 {resourcesData.map((category) => (
                   <div key={category.category} className="mb-6">
-                    <h4 className="font-semibold text-gray-900 mb-3 text-sm uppercase tracking-wide">
+                    <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-3 text-sm uppercase tracking-wide">
                       {category.category}
                     </h4>
                     <div className="space-y-1">
@@ -460,11 +480,13 @@ export default function Navbar() {
                         <Link
                           key={item.name}
                           href={item.href}
-                          className="block px-4 py-3 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                          className="block px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
-                          <div className="font-medium">{item.name}</div>
-                          <div className="text-xs text-gray-500 mt-1">
+                          <div className="font-medium text-gray-800 dark:text-gray-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            {item.name}
+                          </div>
+                          <div className="text-xs text-gray-500 dark:text-gray-300 mt-1">
                             {item.description}
                           </div>
                         </Link>
@@ -474,18 +496,35 @@ export default function Navbar() {
                 ))}
               </MobileDropdown>
 
-              <Link
-                href="/about"
-                className="block px-4 py-3 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                About
-              </Link>
+              {/* About Button */}
+              <MobileDropdown title="About" icon={<User className="h-5 w-5" />}>
+                <Link
+                  href="/about"
+                  className="block px-4 py-3 text-base font-medium text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  About
+                </Link>
+              </MobileDropdown>
 
-              <div className="pt-4 border-t border-gray-200/50 mt-6">
+              {/* Contact Button */}
+              <MobileDropdown
+                title="Contact"
+                icon={<Mail className="h-5 w-5" />}
+              >
+                <Link
+                  href="/contact"
+                  className="block px-4 py-3 text-base font-medium text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Contact
+                </Link>
+              </MobileDropdown>
+
+              <div className="pt-4 border-t border-gray-200/50 dark:border-gray-800 mt-6">
                 <Button
                   asChild
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg"
+                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg dark:from-blue-500 dark:to-purple-700 dark:hover:from-blue-600 dark:hover:to-purple-800"
                 >
                   <Link
                     href="/interview-prep"
@@ -496,6 +535,22 @@ export default function Navbar() {
                     <span>Start Interview Prep</span>
                   </Link>
                 </Button>
+                {/* Dark Mode Toggle */}
+                <div className="flex justify-center mt-4">
+                  <button
+                    aria-label="Toggle Dark Mode"
+                    onClick={() =>
+                      setTheme(theme === "dark" ? "light" : "dark")
+                    }
+                    className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    {theme === "dark" ? (
+                      <Sun className="w-5 h-5 text-yellow-400" />
+                    ) : (
+                      <Moon className="w-5 h-5 text-gray-700" />
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -520,7 +575,7 @@ function MobileDropdown({
     <div className="mb-2">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between w-full px-4 py-3 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+        className="flex items-center justify-between w-full px-4 py-3 text-base font-medium text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
       >
         <div className="flex items-center space-x-3">
           <div className="text-blue-600">{icon}</div>
@@ -533,7 +588,7 @@ function MobileDropdown({
         />
       </button>
       {isOpen && (
-        <div className="mt-2 pl-4 space-y-1 animate-in slide-in-from-top-1 duration-200">
+        <div className="mt-2 pl-4 space-y-1 animate-in slide-in-from-top-1 duration-200 overflow-y-auto max-h-60 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
           {children}
         </div>
       )}

@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen bg-white ">
+      <body className="min-h-screen bg-white dark:bg-zinc-900 ">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
           <HeroSection />
