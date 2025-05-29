@@ -1,6 +1,5 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import HeroSection from "@/components/HeroSection";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "next-themes";
 
@@ -19,8 +18,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-white dark:bg-zinc-900 ">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
-          <HeroSection />
-          <main className="p-4">{children}</main>
+          <main className="">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

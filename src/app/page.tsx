@@ -1,4 +1,10 @@
 // app/page.tsx
+import HeroSection from "@/components/HeroSection";
+
 export default function HomePage() {
-  return <div className="mt-8 text-center"></div>;
+  return (
+    <div className="w-full h-full">
+      <HeroSection />
+    </div>
+  );
 }
