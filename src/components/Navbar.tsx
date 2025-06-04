@@ -281,15 +281,19 @@ export default function Navbar() {
               onMouseEnter={() => handleMouseEnter("topics")}
               onMouseLeave={handleMouseLeave}
             >
-              <button className="flex items-center space-x-1 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">
-                <Brain className="h-4 w-4" />
-                <span>Topics</span>
-                <ChevronDown
-                  className={`h-4 w-4 transition-transform duration-200 ${
-                    activeDropdown === "topics" ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
+              <Link href="/topics">
+                <button className="flex cursor-pointer items-center space-x-1 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">
+                  <Brain className="h-4 w-4" />
+                  <span>Topics</span>
+
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform duration-200 ${
+                      activeDropdown === "topics" ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+              </Link>
+
               {activeDropdown === "topics" && (
                 <div className="fixed left-1/2 transform -translate-x-1/2 mt-2 w-screen max-w-4xl bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-100 dark:border-gray-800 animate-in slide-in-from-top-2 duration-200">
                   {renderMegaMenu(topicsData)}
@@ -303,15 +307,17 @@ export default function Navbar() {
               onMouseEnter={() => handleMouseEnter("practice")}
               onMouseLeave={handleMouseLeave}
             >
-              <button className="flex items-center space-x-1 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">
-                <Target className="h-4 w-4" />
-                <span>Practice</span>
-                <ChevronDown
-                  className={`h-4 w-4 transition-transform duration-200 ${
-                    activeDropdown === "practice" ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
+              <Link href="/practice">
+                <button className="flex cursor-pointer items-center space-x-1 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">
+                  <Target className="h-4 w-4" />
+                  <span>Practice</span>
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform duration-200 ${
+                      activeDropdown === "practice" ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+              </Link>
               {activeDropdown === "practice" && (
                 <div className="fixed left-1/2 transform -translate-x-1/2 mt-2 w-screen max-w-4xl bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-100 dark:border-gray-800 animate-in slide-in-from-top-2 duration-200">
                   {renderMegaMenu(practiceData)}
@@ -325,15 +331,17 @@ export default function Navbar() {
               onMouseEnter={() => handleMouseEnter("resources")}
               onMouseLeave={handleMouseLeave}
             >
-              <button className="flex items-center space-x-1 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">
-                <BookOpen className="h-4 w-4" />
-                <span>Resources</span>
-                <ChevronDown
-                  className={`h-4 w-4 transition-transform duration-200 ${
-                    activeDropdown === "resources" ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
+              <Link href="/resources">
+                <button className="flex cursor-pointer items-center space-x-1 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">
+                  <BookOpen className="h-4 w-4" />
+                  <span>Resources</span>
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform duration-200 ${
+                      activeDropdown === "resources" ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+              </Link>
               {activeDropdown === "resources" && (
                 <div className="fixed left-1/2 transform -translate-x-1/2 mt-2 w-screen max-w-4xl bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-100 dark:border-gray-800 animate-in slide-in-from-top-2 duration-200">
                   {renderMegaMenu(resourcesData)}
