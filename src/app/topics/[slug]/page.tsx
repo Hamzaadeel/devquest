@@ -5,10 +5,10 @@ import { notFound, useParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Sidebar from "@/components/Sidebar";
 import ReactMarkdown from "react-markdown";
-import { Bars3Icon } from "@heroicons/react/24/outline";
 
 // Example: import your topics metadata from data folder
 import { allTopics } from "@/app/data/topics";
+import { LiaAngleDoubleRightSolid } from "react-icons/lia";
 
 interface PageProps {
   params: { slug: string };
@@ -268,6 +268,53 @@ export default function TopicPage() {
         );
 
       case "cheatsheets":
+        // Support new cheatsheet structure (sections/items) for any topic
+        const structuredCheatSheet =
+          Array.isArray(content) && content.length > 0 && content[0].sections
+            ? content[0]
+            : (content as any)?.sections
+            ? (content as any)
+            : null;
+        if (structuredCheatSheet) {
+          return (
+            <div className="space-y-8">
+              {structuredCheatSheet.sections.map(
+                (section: any, idx: number) => (
+                  <div
+                    key={idx}
+                    className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-4 sm:p-6"
+                  >
+                    <h3 className="text-lg font-semibold text-blue-700 dark:text-blue-300 mb-3">
+                      {section.title}
+                    </h3>
+                    <ul className="space-y-4">
+                      {section.items.map((item: any, i: number) => (
+                        <li key={i} className="">
+                          {item.name && (
+                            <div className="font-semibold text-gray-800 dark:text-gray-200">
+                              {item.name}
+                            </div>
+                          )}
+                          {item.description && (
+                            <div className="text-gray-600 dark:text-gray-400 text-sm mb-1">
+                              {item.description}
+                            </div>
+                          )}
+                          {item.code && (
+                            <pre className="bg-gray-100 dark:bg-gray-800 rounded-md p-3 text-xs overflow-x-auto mt-1 text-gray-800 dark:text-gray-100">
+                              <code>{item.code}</code>
+                            </pre>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )
+              )}
+            </div>
+          );
+        }
+        // fallback for other topics (old format)
         return (
           <div className="space-y-6">
             {(content as Cheatsheet[]).map((sheet, index) => (
@@ -296,82 +343,27 @@ export default function TopicPage() {
 
       case "mcqs":
         return (
-          <div className="space-y-6">
-            {(content as MCQ[]).map((mcq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white p-6 rounded-xl shadow-sm border border-gray-200"
-              >
-                <div className="mb-3">
-                  <span className="inline-block px-3 py-1 bg-purple-100 text-purple-800 text-sm font-medium rounded-full">
-                    {mcq.subTopic}
-                  </span>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                  {index + 1}. {mcq.question}
-                </h3>
-                <div className="space-y-2">
-                  {mcq.options.map((option, optIndex) => (
-                    <label
-                      key={optIndex}
-                      className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
-                    >
-                      <input
-                        type="radio"
-                        name={`mcq-${index}`}
-                        value={optIndex}
-                        className="text-purple-600 focus:ring-purple-500"
-                      />
-                      <span className="text-gray-700">
-                        {String.fromCharCode(65 + optIndex)}. {option}
-                      </span>
-                    </label>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
+          <div className="flex flex-col items-center justify-center py-16">
+            <div className="text-6xl mb-4">⏳</div>
+            <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
+              Coming Soon
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300">
+              MCQs section is under development. Stay tuned!
+            </p>
           </div>
         );
 
       case "coding-samples":
         return (
-          <div className="space-y-6">
-            {(content as CodingSample[]).map((sample, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white p-6 rounded-xl shadow-sm border border-gray-200"
-              >
-                <div className="mb-3">
-                  <div className="flex items-center space-x-2">
-                    <span className="inline-block px-3 py-1 bg-orange-100 text-orange-800 text-sm font-medium rounded-full">
-                      {sample.subTopic}
-                    </span>
-                    {sample.language && (
-                      <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 text-sm font-medium rounded-full">
-                        {sample.language}
-                      </span>
-                    )}
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
-                  {sample.title}
-                </h3>
-                <div className="bg-gray-900 p-4 rounded-lg mb-4 overflow-x-auto">
-                  <pre className="text-green-400 font-mono text-sm">
-                    <code>{sample.code}</code>
-                  </pre>
-                </div>
-                <div className="prose max-w-none text-gray-700">
-                  {sample.explanation}
-                </div>
-              </motion.div>
-            ))}
+          <div className="flex flex-col items-center justify-center py-16">
+            <div className="text-6xl mb-4">⏳</div>
+            <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
+              Coming Soon
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300">
+              Coding Samples section is under development. Stay tuned!
+            </p>
           </div>
         );
 
@@ -384,11 +376,11 @@ export default function TopicPage() {
     <div className="flex min-h-screen bg-gray-50 dark:bg-gray-950">
       {/* Mobile Hamburger Button */}
       <button
-        className="md:hidden fixed top-4 left-4 z-50 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-2 shadow-lg"
+        className="md:hidden fixed top-3 left-3 z-50 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-2 shadow-lg"
         onClick={() => setSidebarMobileOpen(true)}
         aria-label="Open sidebar"
       >
-        <Bars3Icon className="h-6 w-6 text-gray-700 dark:text-gray-200" />
+        <LiaAngleDoubleRightSolid className="h-6 w-6 text-gray-700 dark:text-gray-200" />
       </button>
 
       <Sidebar
@@ -456,7 +448,7 @@ export default function TopicPage() {
           </AnimatePresence>
 
           {/* Empty State */}
-          {!loading && getFilteredContent().length === 0 && (
+          {/* {!loading && getFilteredContent().length === 0 && (
             <div className="text-center py-12">
               <div className="text-gray-400 dark:text-gray-600 text-6xl mb-4">
                 📚
@@ -472,7 +464,7 @@ export default function TopicPage() {
                 is not available yet.
               </p>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>

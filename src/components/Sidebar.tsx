@@ -31,7 +31,7 @@ const tabConfig = [
   },
   {
     id: "cheatsheets",
-    label: "Cheatsheets",
+    label: "Cheatsheet",
     icon: DocumentTextIcon,
     color: "text-green-600",
     bgColor: "bg-green-50",
@@ -109,7 +109,11 @@ export default function Sidebar({
           const isActive = activeTab === tab.id;
           const Icon = tab.icon;
 
-          if (tab.id === "cheatsheets") {
+          if (
+            tab.id === "cheatsheets" ||
+            tab.id === "mcqs" ||
+            tab.id === "coding-samples"
+          ) {
             return (
               <button
                 key={tab.id}

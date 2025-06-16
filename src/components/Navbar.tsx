@@ -372,10 +372,7 @@ export default function Navbar() {
               asChild
               className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 dark:from-blue-500 dark:to-purple-700 dark:hover:from-blue-600 dark:hover:to-purple-800"
             >
-              <Link
-                href="/interview-prep"
-                className="flex items-center space-x-2"
-              >
+              <Link href="/topics" className="flex items-center space-x-2">
                 <Zap className="h-4 w-4" />
                 <span>Start Interview Prep</span>
               </Link>

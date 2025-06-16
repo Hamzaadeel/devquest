@@ -63,8 +63,8 @@ const TopicsPage = () => {
             Explore Topics
           </h1>
           <p className="text-xl max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
-            Master programming concepts through interactive lessons and hands-on
-            projects
+            Concise flashcards, quick-reference cheat sheets, challenging MCQs,
+            and practical code snippets — all in one place.
           </p>
         </motion.div>
 
