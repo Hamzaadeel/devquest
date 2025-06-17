@@ -29,7 +29,7 @@ const TopicsPage = () => {
   };
 
   const handleTopicClick = (topic: Topic) => {
-    router.push(`/topics/${topic.slug}`);
+    router.push(`/topics/${topic.slug}/flashcards`);
   };
 
   const getDifficultyColor = (difficulty: string) => {

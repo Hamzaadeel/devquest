@@ -27,32 +27,32 @@ const topicsData = [
     items: [
       {
         name: "Programming Fundamentals",
-        href: "/topics/programming-fundamentals",
+        href: "/topics/programming-fundamentals/flashcards",
         description: "Core programming concepts",
       },
       {
         name: "OOP",
-        href: "/topics/oop",
+        href: "/topics/oop/flashcards",
         description: "Object-Oriented Programming concepts",
       },
       {
         name: "DSA",
-        href: "/topics/dsa",
+        href: "/topics/dsa/flashcards",
         description: "Data Structures & Algorithms",
       },
       {
         name: "HTML",
-        href: "/topics/html",
+        href: "/topics/html/flashcards",
         description: "Semantic markup & best practices",
       },
       {
         name: "CSS",
-        href: "/topics/css",
+        href: "/topics/css/flashcards",
         description: "Styling & layout fundamentals",
       },
       {
         name: "JavaScript",
-        href: "/topics/javascript",
+        href: "/topics/javascript/flashcards",
         description: "Modern JS concepts & ES6+",
       },
     ],
@@ -62,27 +62,27 @@ const topicsData = [
     items: [
       {
         name: "React",
-        href: "/topics/react",
+        href: "/topics/react/flashcards",
         description: "Components, hooks & state management",
       },
       {
         name: "Next.js",
-        href: "/topics/nextjs",
+        href: "/topics/nextjs/flashcards",
         description: "Full-stack React framework",
       },
       {
         name: "Angular",
-        href: "/topics/angular",
+        href: "/topics/angular/flashcards",
         description: "TypeScript-based framework",
       },
       {
         name: "Vue.js",
-        href: "/topics/vue",
+        href: "/topics/vue/flashcards",
         description: "Progressive JavaScript framework",
       },
       {
         name: "Tailwind CSS",
-        href: "/topics/tailwind",
+        href: "/topics/tailwind/flashcards",
         description: "Utility-first CSS framework",
       },
     ],
@@ -92,27 +92,27 @@ const topicsData = [
     items: [
       {
         name: "Node.js",
-        href: "/topics/nodejs",
+        href: "/topics/nodejs/flashcards",
         description: "Server-side JavaScript runtime",
       },
       {
         name: "Express.js",
-        href: "/topics/express",
+        href: "/topics/express/flashcards",
         description: "Minimal web framework",
       },
       {
         name: "Nest.js",
-        href: "/topics/nestjs",
+        href: "/topics/nestjs/flashcards",
         description: "Enterprise Node.js framework",
       },
       {
         name: "MongoDB",
-        href: "/topics/mongodb",
+        href: "/topics/mongodb/flashcards",
         description: "NoSQL document database",
       },
       {
         name: "SQL",
-        href: "/topics/sql",
+        href: "/topics/sql/flashcards",
         description: "Relational database queries",
       },
     ],
@@ -168,7 +168,7 @@ const resourcesData = [
     items: [
       {
         name: "Cheat Sheets",
-        href: "/resources/cheat-sheets",
+        href: "/resources/cheatsheets",
         description: "Quick reference guides",
       },
       {
@@ -192,14 +192,9 @@ const resourcesData = [
         description: "Step-by-step learning paths",
       },
       {
-        name: "Company Guides",
-        href: "/resources/companies",
-        description: "FAANG & startup interview prep",
-      },
-      {
-        name: "Portfolio Tips",
-        href: "/resources/portfolio",
-        description: "Showcase your best work",
+        name: "CV/Resume Tips and Template",
+        href: "/resources/resume",
+        description: "Optimized resume tips",
       },
     ],
   },
@@ -301,30 +296,6 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* Practice Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => handleMouseEnter("practice")}
-              onMouseLeave={handleMouseLeave}
-            >
-              <Link href="/practice">
-                <button className="flex cursor-pointer items-center space-x-1 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">
-                  <Target className="h-4 w-4" />
-                  <span>Practice</span>
-                  <ChevronDown
-                    className={`h-4 w-4 transition-transform duration-200 ${
-                      activeDropdown === "practice" ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-              </Link>
-              {activeDropdown === "practice" && (
-                <div className="fixed left-1/2 transform -translate-x-1/2 mt-2 w-screen max-w-4xl bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-100 dark:border-gray-800 animate-in slide-in-from-top-2 duration-200">
-                  {renderMegaMenu(practiceData)}
-                </div>
-              )}
-            </div>
-
             {/* Resources Dropdown */}
             <div
               className="relative"
@@ -345,6 +316,38 @@ export default function Navbar() {
               {activeDropdown === "resources" && (
                 <div className="fixed left-1/2 transform -translate-x-1/2 mt-2 w-screen max-w-4xl bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-100 dark:border-gray-800 animate-in slide-in-from-top-2 duration-200">
                   {renderMegaMenu(resourcesData)}
+                </div>
+              )}
+            </div>
+            {/* Practice Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => handleMouseEnter("practice")}
+              onMouseLeave={handleMouseLeave}
+            >
+              <Link href="/practice">
+                <button className="flex cursor-pointer items-center space-x-1 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">
+                  <Target className="h-4 w-4" />
+                  <span>Practice</span>
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform duration-200 ${
+                      activeDropdown === "practice" ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+              </Link>
+              {activeDropdown === "practice" && (
+                <div className="fixed left-1/2 transform -translate-x-1/2 mt-2 w-screen max-w-4xl bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-100 dark:border-gray-800 animate-in slide-in-from-top-2 duration-200">
+                  <div className="flex flex-col items-center justify-center py-16">
+                    <div className="text-6xl mb-4">⏳</div>
+                    <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                      Coming Soon
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-300">
+                      Practice section is under development. Stay tuned!
+                    </p>
+                  </div>
+                  {/* {renderMegaMenu(practiceData)} */}
                 </div>
               )}
             </div>
@@ -441,36 +444,6 @@ export default function Navbar() {
               </MobileDropdown>
 
               <MobileDropdown
-                title="Practice"
-                icon={<Target className="h-5 w-5" />}
-              >
-                {practiceData.map((category) => (
-                  <div key={category.category} className="mb-6">
-                    <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-3 text-sm uppercase tracking-wide">
-                      {category.category}
-                    </h4>
-                    <div className="space-y-1">
-                      {category.items.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className="block px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          <div className="font-medium text-gray-800 dark:text-gray-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                            {item.name}
-                          </div>
-                          <div className="text-xs text-gray-500 dark:text-gray-300 mt-1">
-                            {item.description}
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </MobileDropdown>
-
-              <MobileDropdown
                 title="Resources"
                 icon={<BookOpen className="h-5 w-5" />}
               >
@@ -498,6 +471,45 @@ export default function Navbar() {
                     </div>
                   </div>
                 ))}
+              </MobileDropdown>
+
+              <MobileDropdown
+                title="Practice"
+                icon={<Target className="h-5 w-5" />}
+              >
+                <div className="flex flex-col items-center justify-center py-16">
+                  <div className="text-6xl mb-4">⏳</div>
+                  <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                    Coming Soon
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    Practice section is under development. Stay tuned!
+                  </p>
+                </div>
+                {/* {practiceData.map((category) => (
+                  <div key={category.category} className="mb-6">
+                    <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-3 text-sm uppercase tracking-wide">
+                      {category.category}
+                    </h4>
+                    <div className="space-y-1">
+                      {category.items.map((item) => (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          className="block px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          <div className="font-medium text-gray-800 dark:text-gray-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            {item.name}
+                          </div>
+                          <div className="text-xs text-gray-500 dark:text-gray-300 mt-1">
+                            {item.description}
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ))} */}
               </MobileDropdown>
 
               {/* About Button */}
@@ -531,7 +543,7 @@ export default function Navbar() {
                   className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg dark:from-blue-500 dark:to-purple-700 dark:hover:from-blue-600 dark:hover:to-purple-800"
                 >
                   <Link
-                    href="/interview-prep"
+                    href="/topics/programming-fundamentals/flashcards"
                     className="flex items-center justify-center space-x-2"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >

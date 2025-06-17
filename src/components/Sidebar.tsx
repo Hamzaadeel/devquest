@@ -9,6 +9,8 @@ import {
   CodeBracketIcon,
   CheckCircleIcon,
 } from "@heroicons/react/24/outline";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface SidebarProps {
   topicSlug: string;
@@ -67,6 +69,7 @@ export default function Sidebar({
   const [expandedTabs, setExpandedTabs] = useState<Set<string>>(
     new Set([activeTab])
   );
+  const router = useRouter();
 
   const toggleTab = (tabId: string) => {
     const newExpanded = new Set(expandedTabs);
@@ -80,6 +83,17 @@ export default function Sidebar({
 
   const handleSubTopicClick = (tabId: string, subTopic: string) => {
     onTabChange(tabId, subTopic);
+    router.push(`/topics/${topicSlug}/flashcards`);
+  };
+
+  const handleTabClick = (tabId: string) => {
+    if (tabId === "flashcards") {
+      // For flashcards, expand the dropdown and navigate
+      setExpandedTabs(new Set([tabId]));
+      router.push(`/topics/${topicSlug}/flashcards`);
+    } else {
+      router.push(`/topics/${topicSlug}/${tabId}`);
+    }
   };
 
   // Sidebar content as a function for reuse
@@ -117,7 +131,7 @@ export default function Sidebar({
             return (
               <button
                 key={tab.id}
-                onClick={() => onTabChange(tab.id)}
+                onClick={() => handleTabClick(tab.id)}
                 className={`w-full flex items-center p-3 rounded-lg transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-800 ${
                   isActive
                     ? `${tab.bgColor} ${tab.borderColor} border dark:border-gray-700 dark:bg-opacity-80`
@@ -143,7 +157,7 @@ export default function Sidebar({
           return (
             <div key={tab.id} className="space-y-1">
               <button
-                onClick={() => toggleTab(tab.id)}
+                onClick={() => handleTabClick(tab.id)}
                 className={`w-full flex items-center justify-between p-3 rounded-lg transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-800 ${
                   isActive
                     ? `${tab.bgColor} ${tab.borderColor} border dark:border-gray-700 dark:bg-opacity-80`

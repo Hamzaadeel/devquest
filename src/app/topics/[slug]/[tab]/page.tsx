@@ -11,13 +11,27 @@ import { allTopics } from "@/app/data/topics";
 import { LiaAngleDoubleRightSolid } from "react-icons/lia";
 
 interface PageProps {
-  params: { slug: string };
+  params: { slug: string; tab: string };
 }
 
 interface Flashcard {
   question: string;
   answer: string;
   subTopic: string;
+}
+
+interface CheatsheetSection {
+  title: string;
+  items: Array<{
+    name: string;
+    description?: string;
+    code?: string;
+  }>;
+}
+
+interface StructuredCheatsheet {
+  title: string;
+  sections: CheatsheetSection[];
 }
 
 interface Cheatsheet {
@@ -42,8 +56,8 @@ interface CodingSample {
 }
 
 export default function TopicPage() {
-  const { slug } = useParams() as { slug: string };
-  const [activeTab, setActiveTab] = useState("flashcards");
+  const { slug, tab } = useParams() as { slug: string; tab: string };
+  const [activeTab, setActiveTab] = useState(tab);
   const [activeSubTopic, setActiveSubTopic] = useState<string | null>(null);
   const [contentData, setContentData] = useState<{
     flashcards: Flashcard[];
@@ -63,6 +77,12 @@ export default function TopicPage() {
   // Find topic metadata
   const topic = allTopics.find((t) => t.slug === slug);
 
+  // Validate tab
+  const validTabs = ["flashcards", "cheatsheets", "mcqs", "coding-samples"];
+  if (!validTabs.includes(tab)) {
+    notFound();
+  }
+
   if (!topic) {
     notFound();
   }
@@ -79,10 +99,29 @@ export default function TopicPage() {
       };
 
       const fileName = fileMap[contentType] || contentType;
-      const module = await import(`../../data/topics/${slug}/${fileName}.ts`);
-      return module.default || [];
+      console.log(
+        `Loading ${contentType} from ${fileName}.ts for topic ${slug}`
+      );
+      // Add detailed log for the import path
+      const importPath = `@/app/data/topics/${slug}/${fileName}.ts`;
+      console.log(`Attempting dynamic import from:`, importPath);
+      const module = await import(
+        `../../../data/topics/${slug}/${fileName}.ts`
+      );
+
+      let data;
+      if (contentType === "cheatsheets") {
+        // For cheatsheets, look for a named export with the topic name
+        const namedExport = module[`${slug.replace(/-/g, "")}CheatSheet`];
+        data = namedExport || module.default || [];
+      } else {
+        data = module.default || [];
+      }
+
+      console.log(`Loaded ${data.length || 1} items for ${contentType}`);
+      return data;
     } catch (error) {
-      console.warn(`No ${contentType} found for topic: ${slug}`);
+      console.warn(`Error loading ${contentType} for topic ${slug}:`, error);
       return [];
     }
   };
@@ -92,19 +131,26 @@ export default function TopicPage() {
     const loadAllContent = async () => {
       setLoading(true);
       try {
-        const [flashcards, cheatsheets, mcqs, codingSamples] =
-          await Promise.all([
-            loadContent("flashcards"),
-            loadContent("cheatsheets"),
-            loadContent("mcqs"),
-            loadContent("coding-samples"),
-          ]);
+        const [flashcards, cheatsheets] = await Promise.all([
+          loadContent("flashcards"),
+          loadContent("cheatsheets"),
+          // Commented out for initial version:
+          // loadContent("mcqs"),
+          // loadContent("coding-samples"),
+        ]);
+
+        console.log("Loaded content:", {
+          flashcards: flashcards.length,
+          cheatsheets: cheatsheets.length,
+          // mcqs: mcqs.length,
+          // codingSamples: codingSamples.length,
+        });
 
         setContentData({
           flashcards,
           cheatsheets,
-          mcqs,
-          codingSamples,
+          mcqs: [], // Not loaded in initial version
+          codingSamples: [], // Not loaded in initial version
         });
       } catch (error) {
         console.error("Error loading content:", error);
@@ -154,9 +200,9 @@ export default function TopicPage() {
     }
   };
 
-  const handleTabChange = (tab: string, subTopic?: string) => {
-    setActiveTab(tab);
-    if (tab === "flashcards" && subTopics.length > 0) {
+  const handleTabChange = (newTab: string, subTopic?: string) => {
+    setActiveTab(newTab);
+    if (newTab === "flashcards" && subTopics.length > 0) {
       setActiveSubTopic(subTopic || subTopics[0]);
     } else {
       setActiveSubTopic(null);
@@ -269,12 +315,20 @@ export default function TopicPage() {
 
       case "cheatsheets":
         // Support new cheatsheet structure (sections/items) for any topic
-        const structuredCheatSheet =
-          Array.isArray(content) && content.length > 0 && content[0].sections
-            ? content[0]
-            : (content as any)?.sections
-            ? (content as any)
-            : null;
+        let structuredCheatSheet: StructuredCheatsheet | null = null;
+
+        if (content && typeof content === "object") {
+          if ("sections" in content) {
+            structuredCheatSheet = content as unknown as StructuredCheatsheet;
+          } else if (
+            Array.isArray(content) &&
+            content.length > 0 &&
+            "sections" in content[0]
+          ) {
+            structuredCheatSheet =
+              content[0] as unknown as StructuredCheatsheet;
+          }
+        }
         if (structuredCheatSheet) {
           return (
             <div className="space-y-8">
@@ -315,33 +369,60 @@ export default function TopicPage() {
           );
         }
         // fallback for other topics (old format)
+        if (Array.isArray(content) && content.length > 0) {
+          return (
+            <div className="space-y-6">
+              {(content as Cheatsheet[]).map((sheet, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800"
+                >
+                  <div className="mb-3">
+                    <span className="inline-block px-3 py-1 bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 text-sm font-medium rounded-full">
+                      {sheet.subTopic}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                    {sheet.title}
+                  </h3>
+                  <div className="prose max-w-none text-gray-700 dark:text-gray-200 dark:prose-invert">
+                    <ReactMarkdown>{sheet.content}</ReactMarkdown>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          );
+        }
+        // If no cheatsheet content is available
         return (
-          <div className="space-y-6">
-            {(content as Cheatsheet[]).map((sheet, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800"
-              >
-                <div className="mb-3">
-                  <span className="inline-block px-3 py-1 bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 text-sm font-medium rounded-full">
-                    {sheet.subTopic}
-                  </span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-                  {sheet.title}
-                </h3>
-                <div className="prose max-w-none text-gray-700 dark:text-gray-200 dark:prose-invert">
-                  <ReactMarkdown>{sheet.content}</ReactMarkdown>
-                </div>
-              </motion.div>
-            ))}
+          <div className="text-center py-12">
+            <div className="text-gray-400 dark:text-gray-600 text-6xl mb-4">
+              📚
+            </div>
+            <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
+              No cheatsheet available
+            </h3>
+            <p className="text-gray-500 dark:text-gray-300">
+              Cheatsheet content for this topic is not available yet.
+            </p>
           </div>
         );
 
       case "mcqs":
+        // Commented out for initial version
+        // return (
+        //   <div className="flex flex-col items-center justify-center py-16">
+        //     <div className="text-6xl mb-4">⏳</div>
+        //     <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
+        //       Coming Soon
+        //     </h3>
+        //     <p className="text-gray-600 dark:text-gray-300">
+        //       MCQs section is under development. Stay tuned!
+        //     </p>
+        //   </div>
         return (
           <div className="flex flex-col items-center justify-center py-16">
             <div className="text-6xl mb-4">⏳</div>
@@ -349,12 +430,23 @@ export default function TopicPage() {
               Coming Soon
             </h3>
             <p className="text-gray-600 dark:text-gray-300">
-              MCQs section is under development. Stay tuned!
+              MCQs section is not included in the initial version.
             </p>
           </div>
         );
 
       case "coding-samples":
+        // Commented out for initial version
+        // return (
+        //   <div className="flex flex-col items-center justify-center py-16">
+        //     <div className="text-6xl mb-4">⏳</div>
+        //     <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
+        //       Coming Soon
+        //     </h3>
+        //     <p className="text-gray-600 dark:text-gray-300">
+        //       Coding Samples section is under development. Stay tuned!
+        //     </p>
+        //   </div>
         return (
           <div className="flex flex-col items-center justify-center py-16">
             <div className="text-6xl mb-4">⏳</div>
@@ -362,7 +454,7 @@ export default function TopicPage() {
               Coming Soon
             </h3>
             <p className="text-gray-600 dark:text-gray-300">
-              Coding Samples section is under development. Stay tuned!
+              Coding Samples section is not included in the initial version.
             </p>
           </div>
         );
@@ -385,10 +477,10 @@ export default function TopicPage() {
 
       <Sidebar
         topicSlug={slug}
-        activeTab={activeTab}
+        activeTab={tab}
         activeSubTopic={activeSubTopic}
-        onTabChange={(tab, subTopic) => {
-          handleTabChange(tab, subTopic);
+        onTabChange={(newTab, subTopic) => {
+          handleTabChange(newTab, subTopic);
           setSidebarMobileOpen(false);
         }}
         subTopics={subTopics}
