@@ -6,6 +6,9 @@ import Providers from "@/components/Provider";
 
 export const metadata = {
   title: "DevQuest",
+  icons: {
+    icon: "/favicon.ico",
+  },
   description: "Web Dev Interview Prep",
 };
 
