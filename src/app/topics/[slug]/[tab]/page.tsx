@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { notFound, useParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Sidebar from "@/components/Sidebar";
@@ -51,6 +51,10 @@ interface CodingSample {
   language?: string;
 }
 
+function hasSections(obj: unknown): obj is { sections: CheatsheetSection[] } {
+  return typeof obj === "object" && obj !== null && "sections" in obj;
+}
+
 export default function TopicPage() {
   const { slug, tab } = useParams() as { slug: string; tab: string };
   const [activeTab, setActiveTab] = useState(tab);
@@ -84,54 +88,58 @@ export default function TopicPage() {
   }
 
   // Dynamic import function
-  const loadContent = async (contentType: string) => {
-    try {
-      // Map the content type to the actual file name
-      const fileMap: { [key: string]: string } = {
-        flashcards: "flashcards",
-        cheatsheets: "cheatsheets",
-        mcqs: "mcqs",
-        "coding-samples": "coding-samples",
-      };
+  const loadContent = useCallback(
+    async (contentType: string) => {
+      try {
+        // Map the content type to the actual file name
+        const fileMap: { [key: string]: string } = {
+          flashcards: "flashcards",
+          cheatsheets: "cheatsheets",
+          mcqs: "mcqs",
+          "coding-samples": "coding-samples",
+        };
 
-      const fileName = fileMap[contentType] || contentType;
-      console.log(
-        `Loading ${contentType} from ${fileName}.ts for topic ${slug}`
-      );
-      // Add detailed log for the import path
-      const importPath = `@/app/data/topics/${slug}/${fileName}.ts`;
-      console.log(`Attempting dynamic import from:`, importPath);
-      const moduleImport = await import(
-        `../../../data/topics/${slug}/${fileName}.ts`
-      );
+        const fileName = fileMap[contentType] || contentType;
+        console.log(
+          `Loading ${contentType} from ${fileName}.ts for topic ${slug}`
+        );
+        // Add detailed log for the import path
+        const importPath = `@/app/data/topics/${slug}/${fileName}.ts`;
+        console.log(`Attempting dynamic import from:`, importPath);
+        const moduleImport = await import(
+          `../../../data/topics/${slug}/${fileName}.ts`
+        );
 
-      let content: unknown[] = [];
-      if (contentType === "cheatsheets") {
-        // For cheatsheets, look for a named export with the topic name
-        const namedExport = moduleImport[`${slug.replace(/-/g, "")}CheatSheet`];
-        content = namedExport || moduleImport.default || [];
-      } else {
-        content = moduleImport.default || [];
+        let content: unknown[] = [];
+        if (contentType === "cheatsheets") {
+          // For cheatsheets, look for a named export with the topic name
+          const namedExport =
+            moduleImport[`${slug.replace(/-/g, "")}CheatSheet`];
+          content = namedExport || moduleImport.default || [];
+        } else {
+          content = moduleImport.default || [];
+        }
+
+        // Cast to correct type
+        switch (contentType) {
+          case "flashcards":
+            return content as Flashcard[];
+          case "cheatsheets":
+            return content as Cheatsheet[];
+          case "mcqs":
+            return content as MCQ[];
+          case "coding-samples":
+            return content as CodingSample[];
+          default:
+            return [];
+        }
+      } catch (error) {
+        console.warn(`Error loading ${contentType} for topic ${slug}:`, error);
+        return [];
       }
-
-      // Cast to correct type
-      switch (contentType) {
-        case "flashcards":
-          return content as Flashcard[];
-        case "cheatsheets":
-          return content as Cheatsheet[];
-        case "mcqs":
-          return content as MCQ[];
-        case "coding-samples":
-          return content as CodingSample[];
-        default:
-          return [];
-      }
-    } catch (error) {
-      console.warn(`Error loading ${contentType} for topic ${slug}:`, error);
-      return [];
-    }
-  };
+    },
+    [slug]
+  );
 
   // Load all content types on component mount or slug change
   useEffect(() => {
@@ -327,7 +335,7 @@ export default function TopicPage() {
           if (
             Array.isArray(content) &&
             content.length > 0 &&
-            "sections" in (content[0] as any)
+            hasSections(content[0])
           ) {
             structuredCheatSheet = content[0] as StructuredCheatsheet;
           }
