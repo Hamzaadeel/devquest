@@ -10,9 +10,6 @@ import {
   Code,
   Server,
   Layers,
-  Book,
-  Clock,
-  Users,
 } from "lucide-react";
 import { useRouter, useParams } from "next/navigation";
 import { roadmaps } from "../../../data/roadmaps/roadmaps";

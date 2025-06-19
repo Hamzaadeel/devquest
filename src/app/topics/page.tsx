@@ -3,7 +3,6 @@ import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { BookOpen, Clock } from "lucide-react";
 import { categories, allTopics, type Topic } from "@/app/data/topics";
 
 const TopicsPage = () => {

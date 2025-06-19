@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { categories, allTopics, Category, Topic } from "../../data/topics";
-import { Clock, BookOpen, ArrowRight } from "lucide-react";
+import { categories, allTopics } from "../../data/topics";
+import { BookOpen, ArrowRight } from "lucide-react";
 
 const CheatSheetsPage = () => {
   const [activeFilter, setActiveFilter] = useState("All");
