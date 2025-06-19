@@ -29,7 +29,7 @@ const roadmaps = {
     slug: "backend",
     icon: Server,
     gradient: "from-purple-500 to-blue-600",
-    image: "../../../../images/roadmaps/backend.jpeg", // Add your image path here
+    image: "../../../../images/roadmaps/backend.jpg", // Add your image path here
     steps: [
       {
         name: "JavaScript",
@@ -46,7 +46,7 @@ const roadmaps = {
     ],
   },
   fullstack: {
-    title: "Full Stack Development Roadmap",
+    title: "FullStack Development Roadmap",
     slug: "fullstack",
     icon: Layers,
     gradient: "from-blue-600 to-purple-500",

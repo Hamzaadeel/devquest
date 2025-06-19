@@ -11,32 +11,22 @@ export default function Footer() {
       { name: "Explore Topics", href: "/topics" },
       { name: "Practice Questions", href: "/practice" },
       { name: "Resources", href: "/resources" },
-      { name: "Random Quiz", href: "/random" },
     ],
     company: [
       { name: "About Us", href: "/about" },
       { name: "Contact", href: "/contact" },
-      { name: "Success Stories", href: "/success" },
-      { name: "Blog", href: "/blog" },
     ],
     support: [
-      { name: "Help Center", href: "/help" },
+      { name: "Help", href: "/contact" },
       { name: "FAQ", href: "/faq" },
-      { name: "Community", href: "/community" },
-      { name: "Feedback", href: "/feedback" },
-    ],
-    legal: [
-      { name: "Privacy Policy", href: "/privacy" },
-      { name: "Terms of Service", href: "/terms" },
-      { name: "Cookie Policy", href: "/cookies" },
-      { name: "DMCA", href: "/dmca" },
+      { name: "Feedback", href: "/contact" },
     ],
   };
 
   const socialLinks = [
     { name: "GitHub", href: "#", icon: Github },
     { name: "LinkedIn", href: "#", icon: Linkedin },
-    { name: "Email", href: "mailto:contact@devquest.com", icon: Mail },
+    { name: "Email", href: "/contact", icon: Mail },
   ];
 
   return (
@@ -156,28 +146,6 @@ export default function Footer() {
                   <Link
                     href={link.href}
                     className="text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-200 group flex items-center"
-                  >
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">
-                      {link.name}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Legal Links */}
-          <div>
-            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-6 relative">
-              Legal
-              <div className="absolute -bottom-2 left-0 w-8 h-0.5 bg-gradient-to-r from-orange-600 to-red-600 rounded-full"></div>
-            </h4>
-            <ul className="space-y-3">
-              {footerLinks.legal.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-600 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200 group flex items-center"
                   >
                     <span className="group-hover:translate-x-1 transition-transform duration-200">
                       {link.name}

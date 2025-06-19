@@ -213,10 +213,16 @@ export default function Navbar() {
     }
     setActiveDropdown(dropdown);
   };
+
   const handleMouseLeave = () => {
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout);
+      setHoverTimeout(null);
+    }
     const timeout = setTimeout(() => {
       setActiveDropdown(null);
-    }, 300); // 300ms delay before closing
+      setHoverTimeout(null);
+    }, 300);
     setHoverTimeout(timeout);
   };
 

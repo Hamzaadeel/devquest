@@ -192,15 +192,15 @@ const AboutPage = () => {
             </div>
             <div className="bg-gradient-to-br from-purple-500/20 to-blue-500/20 backdrop-blur-sm rounded-lg px-6 py-3 border border-white/20 hover:border-purple-400/50 transition-all duration-300">
               <div className="text-2xl font-bold text-white">
-                <CountUp to={50} duration={2.5} delay={0.2} />+
+                <CountUp to={15} duration={2.5} delay={0.2} />+
               </div>
-              <div className="text-sm text-white/70">Code Examples</div>
+              <div className="text-sm text-white/70">Cheatsheets</div>
             </div>
             <div className="bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-sm rounded-lg px-6 py-3 border border-white/20 hover:border-blue-400/50 transition-all duration-300">
               <div className="text-2xl font-bold text-white">
-                <CountUp to={200} duration={2.5} delay={0.4} />+
+                <CountUp to={10} duration={2.5} delay={0.4} />+
               </div>
-              <div className="text-sm text-white/70">MCQ Questions</div>
+              <div className="text-sm text-white/70">Topics</div>
             </div>
           </div>
         </div>

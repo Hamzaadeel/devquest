@@ -2,6 +2,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "next-themes";
+import Providers from "@/components/Provider";
 
 export const metadata = {
   title: "DevQuest",
@@ -15,11 +16,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen bg-white dark:bg-zinc-900 ">
+      <body
+        suppressHydrationWarning
+        className="min-h-screen bg-white dark:bg-zinc-900 "
+      >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Navbar />
-          <main className="">{children}</main>
-          <Footer />
+          <Providers>
+            <Navbar />
+            <main className="">{children}</main>
+            <Footer />
+          </Providers>
         </ThemeProvider>
       </body>
     </html>

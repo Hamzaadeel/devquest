@@ -14,17 +14,12 @@ import {
   Clock,
   Users,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { roadmaps } from "../../../data/roadmaps/roadmaps";
 
-interface PageProps {
-  params: {
-    type: string;
-  };
-}
-
-const RoadmapDetailPage = ({ params }: PageProps) => {
+const RoadmapDetailPage = () => {
   const router = useRouter();
+  const params = useParams() as { type: string };
   const [completedSteps, setCompletedSteps] = useState<Set<number>>(new Set());
 
   const roadmapData = roadmaps[params.type];
