@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Code, Server, Layers } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 // Roadmap data from your file
 const roadmaps = {
@@ -211,9 +212,10 @@ const RoadmapCard = ({ roadmap, index }: RoadmapCardProps) => {
               transition={{ duration: 0.3 }}
             >
               <div className="relative w-full h-40 mb-4 rounded-lg overflow-hidden">
-                <img
+                <Image
                   src={roadmap.image}
                   alt={`${roadmap.title} illustration`}
+                  fill
                   className="w-full h-full object-cover"
                 />
                 <div

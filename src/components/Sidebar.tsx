@@ -65,20 +65,7 @@ export default function Sidebar({
   mobileOpen = false,
   onCloseMobile,
 }: SidebarProps) {
-  const [expandedTabs, setExpandedTabs] = useState<Set<string>>(
-    new Set([activeTab])
-  );
   const router = useRouter();
-
-  const toggleTab = (tabId: string) => {
-    const newExpanded = new Set(expandedTabs);
-    if (newExpanded.has(tabId)) {
-      newExpanded.delete(tabId);
-    } else {
-      newExpanded.add(tabId);
-    }
-    setExpandedTabs(newExpanded);
-  };
 
   const handleSubTopicClick = (tabId: string, subTopic: string) => {
     onTabChange(tabId, subTopic);
@@ -88,7 +75,6 @@ export default function Sidebar({
   const handleTabClick = (tabId: string) => {
     if (tabId === "flashcards") {
       // For flashcards, expand the dropdown and navigate
-      setExpandedTabs(new Set([tabId]));
       router.push(`/topics/${topicSlug}/flashcards`);
     } else {
       router.push(`/topics/${topicSlug}/${tabId}`);
@@ -118,7 +104,6 @@ export default function Sidebar({
       </div>
       <div className="p-4 space-y-2">
         {tabConfig.map((tab) => {
-          const isExpanded = expandedTabs.has(tab.id);
           const isActive = activeTab === tab.id;
           const Icon = tab.icon;
 
@@ -178,14 +163,14 @@ export default function Sidebar({
                   </span>
                 </div>
                 <motion.div
-                  animate={{ rotate: isExpanded ? 90 : 0 }}
+                  animate={{ rotate: 0 }}
                   transition={{ duration: 0.2 }}
                 >
                   <ChevronRightIcon className="h-4 w-4 text-gray-400 dark:text-gray-500" />
                 </motion.div>
               </button>
               <AnimatePresence>
-                {isExpanded && (
+                {isActive && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}

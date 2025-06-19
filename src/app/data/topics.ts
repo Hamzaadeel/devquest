@@ -16,12 +16,13 @@ import {
   Database,
   Table,
 } from "lucide-react";
+import React from "react";
 
 export interface Topic {
   id: string;
   title: string;
   description: string;
-  icon: any;
+  icon: React.ElementType;
   difficulty: "Beginner" | "Intermediate" | "Advanced";
   estimatedTime: string;
   lessonsCount: number;

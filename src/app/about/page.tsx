@@ -14,6 +14,7 @@ import {
   Layers,
 } from "lucide-react";
 import { useInView, useMotionValue, useSpring } from "framer-motion";
+import Link from "next/link";
 
 interface CountUpProps {
   to: number;
@@ -343,7 +344,7 @@ const AboutPage = () => {
               Why Choose DevQuest?
             </h2>
             <p className="text-xl text-white/80 max-w-2xl mx-auto">
-              Designed for learners, by developers. Here's what makes us
+              Designed for learners, by developers. Here&apos;s what makes us
               different:
             </p>
           </div>
@@ -373,13 +374,13 @@ const AboutPage = () => {
             Explore topics, practice questions, and ace your next interview with
             DevQuest.
           </p>
-          <a
+          <Link
             href="/topics"
             className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 text-white font-bold px-8 py-4 rounded-full hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 border border-white/20 hover:border-white/40"
           >
             <Zap className="w-5 h-5" />
             Start Learning
-          </a>
+          </Link>
         </div>
       </section>
     </div>

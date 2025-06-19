@@ -113,30 +113,6 @@ const ContactPage = () => {
     }
   };
 
-  const contactInfo = [
-    {
-      icon: <Mail className="w-6 h-6" />,
-      title: "Email Us",
-      description: "Get in touch via email",
-      detail: "support@devquest.com",
-      color: "text-blue-400",
-    },
-    {
-      icon: <MessageSquare className="w-6 h-6" />,
-      title: "Quick Response",
-      description: "We typically respond within",
-      detail: "24 hours",
-      color: "text-purple-400",
-    },
-    {
-      icon: <Code className="w-6 h-6" />,
-      title: "Open Source",
-      description: "Contribute on GitHub",
-      detail: "github.com/devquest",
-      color: "text-blue-400",
-    },
-  ];
-
   if (isSubmitted) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 flex items-center justify-center px-6">
@@ -171,8 +147,9 @@ const ContactPage = () => {
           </h1>
 
           <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed mb-8">
-            Have questions, suggestions, or feedback? We'd love to hear from
-            you. Let's build the future of interview preparation together.
+            Have questions, suggestions, or feedback? We&apos;d love to hear
+            from you. Let&apos;s build the future of interview preparation
+            together.
           </p>
           <div
             className="mt-16 animate-bounce cursor-pointer"

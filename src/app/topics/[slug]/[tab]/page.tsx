@@ -10,10 +10,6 @@ import ReactMarkdown from "react-markdown";
 import { allTopics } from "@/app/data/topics";
 import { LiaAngleDoubleRightSolid } from "react-icons/lia";
 
-interface PageProps {
-  params: { slug: string; tab: string };
-}
-
 interface Flashcard {
   question: string;
   answer: string;
@@ -105,21 +101,32 @@ export default function TopicPage() {
       // Add detailed log for the import path
       const importPath = `@/app/data/topics/${slug}/${fileName}.ts`;
       console.log(`Attempting dynamic import from:`, importPath);
-      const module = await import(
+      const moduleImport = await import(
         `../../../data/topics/${slug}/${fileName}.ts`
       );
 
-      let data;
+      let content: unknown[] = [];
       if (contentType === "cheatsheets") {
         // For cheatsheets, look for a named export with the topic name
-        const namedExport = module[`${slug.replace(/-/g, "")}CheatSheet`];
-        data = namedExport || module.default || [];
+        const namedExport = moduleImport[`${slug.replace(/-/g, "")}CheatSheet`];
+        content = namedExport || moduleImport.default || [];
       } else {
-        data = module.default || [];
+        content = moduleImport.default || [];
       }
 
-      console.log(`Loaded ${data.length || 1} items for ${contentType}`);
-      return data;
+      // Cast to correct type
+      switch (contentType) {
+        case "flashcards":
+          return content as Flashcard[];
+        case "cheatsheets":
+          return content as Cheatsheet[];
+        case "mcqs":
+          return content as MCQ[];
+        case "coding-samples":
+          return content as CodingSample[];
+        default:
+          return [];
+      }
     } catch (error) {
       console.warn(`Error loading ${contentType} for topic ${slug}:`, error);
       return [];
@@ -132,11 +139,10 @@ export default function TopicPage() {
       setLoading(true);
       try {
         const [flashcards, cheatsheets] = await Promise.all([
-          loadContent("flashcards"),
-          loadContent("cheatsheets"),
-          // Commented out for initial version:
-          // loadContent("mcqs"),
-          // loadContent("coding-samples"),
+          loadContent("flashcards") as Promise<Flashcard[]>,
+          loadContent("cheatsheets") as Promise<Cheatsheet[]>,
+          // loadContent("mcqs") as Promise<MCQ[]>,
+          // loadContent("coding-samples") as Promise<CodingSample[]>,
         ]);
 
         console.log("Loaded content:", {
@@ -333,7 +339,7 @@ export default function TopicPage() {
           return (
             <div className="space-y-8">
               {structuredCheatSheet.sections.map(
-                (section: any, idx: number) => (
+                (section: CheatsheetSection, idx: number) => (
                   <div
                     key={idx}
                     className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-4 sm:p-6"
@@ -342,25 +348,30 @@ export default function TopicPage() {
                       {section.title}
                     </h3>
                     <ul className="space-y-4">
-                      {section.items.map((item: any, i: number) => (
-                        <li key={i} className="">
-                          {item.name && (
-                            <div className="font-semibold text-gray-800 dark:text-gray-200">
-                              {item.name}
-                            </div>
-                          )}
-                          {item.description && (
-                            <div className="text-gray-600 dark:text-gray-400 text-sm mb-1">
-                              {item.description}
-                            </div>
-                          )}
-                          {item.code && (
-                            <pre className="bg-gray-100 dark:bg-gray-800 rounded-md p-3 text-xs overflow-x-auto mt-1 text-gray-800 dark:text-gray-100">
-                              <code>{item.code}</code>
-                            </pre>
-                          )}
-                        </li>
-                      ))}
+                      {section.items.map(
+                        (
+                          item: CheatsheetSection["items"][number],
+                          i: number
+                        ) => (
+                          <li key={i} className="">
+                            {item.name && (
+                              <div className="font-semibold text-gray-800 dark:text-gray-200">
+                                {item.name}
+                              </div>
+                            )}
+                            {item.description && (
+                              <div className="text-gray-600 dark:text-gray-400 text-sm mb-1">
+                                {item.description}
+                              </div>
+                            )}
+                            {item.code && (
+                              <pre className="bg-gray-100 dark:bg-gray-800 rounded-md p-3 text-xs overflow-x-auto mt-1 text-gray-800 dark:text-gray-100">
+                                <code>{item.code}</code>
+                              </pre>
+                            )}
+                          </li>
+                        )
+                      )}
                     </ul>
                   </div>
                 )

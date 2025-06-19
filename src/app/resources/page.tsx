@@ -110,7 +110,7 @@ export default function ResourcesPage() {
           animate="visible"
           className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12"
         >
-          {resourceTypes.map((resource, index) => {
+          {resourceTypes.map((resource) => {
             const IconComponent = resource.icon;
 
             return (

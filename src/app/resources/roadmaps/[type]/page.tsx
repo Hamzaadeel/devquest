@@ -30,7 +30,7 @@ const RoadmapDetailPage = () => {
             Roadmap Not Found
           </h1>
           <p className="text-gray-600 dark:text-gray-400 mb-8">
-            The roadmap you're looking for doesn't exist.
+            The roadmap you&apos;re looking for doesn&apos;t exist.
           </p>
           <button
             onClick={() => router.back()}
@@ -273,8 +273,8 @@ const RoadmapDetailPage = () => {
             <CheckCircle size={48} className="mx-auto mb-4" />
             <h3 className="text-2xl font-bold mb-2">Congratulations! 🎉</h3>
             <p className="text-white/90">
-              You've completed the {roadmapData.title}! You're now ready to
-              build amazing projects.
+              You&apos;ve completed the {roadmapData.title}! You&apos;re now
+              ready to build amazing projects.
             </p>
           </motion.div>
         )}

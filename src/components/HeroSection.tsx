@@ -116,7 +116,7 @@ export default function HeroSection() {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, []);
+  }, [slides.length]);
 
   const goToPrev = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);

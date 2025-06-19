@@ -119,49 +119,6 @@ const topicsData = [
   },
 ];
 
-const practiceData = [
-  {
-    category: "Coding Challenges",
-    items: [
-      {
-        name: "Algorithm Problems",
-        href: "/practice/algorithms",
-        description: "Solve coding interview questions",
-      },
-      {
-        name: "Data Structures",
-        href: "/practice/data-structures",
-        description: "Master arrays, trees, graphs & more",
-      },
-      {
-        name: "System Design",
-        href: "/practice/system-design",
-        description: "Large-scale system architecture",
-      },
-    ],
-  },
-  {
-    category: "Mock Interviews",
-    items: [
-      {
-        name: "Technical Interview",
-        href: "/practice/technical",
-        description: "Simulate real interview scenarios",
-      },
-      {
-        name: "Behavioral Questions",
-        href: "/practice/behavioral",
-        description: "Common HR & soft skill questions",
-      },
-      {
-        name: "Code Reviews",
-        href: "/practice/code-review",
-        description: "Analyze and improve code quality",
-      },
-    ],
-  },
-];
-
 const resourcesData = [
   {
     category: "Study Materials",
