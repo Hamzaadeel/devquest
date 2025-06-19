@@ -16,7 +16,7 @@ const TopicsPage = () => {
       ? allTopics
       : categories.find((cat) => cat.id === selectedCategory)?.topics || [];
 
-  const handleMouseMove = (e: React.MouseEvent, cardId: string) => {
+  const handleMouseMove = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -119,7 +119,7 @@ const TopicsPage = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  onMouseMove={(e) => handleMouseMove(e, topic.id)}
+                  onMouseMove={handleMouseMove}
                   onMouseEnter={() => setHoveredCard(topic.id)}
                   onMouseLeave={() => setHoveredCard(null)}
                   onClick={() => handleTopicClick(topic)}

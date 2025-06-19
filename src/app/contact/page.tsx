@@ -124,7 +124,7 @@ const ContactPage = () => {
             Message Sent Successfully!
           </h2>
           <p className="text-white/80 text-lg">
-            Thanks for reaching out. We'll get back to you soon!
+            Thanks for reaching out. We&apos;ll get back to you soon!
           </p>
         </div>
       </div>
@@ -139,7 +139,9 @@ const ContactPage = () => {
         <div className="relative max-w-6xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/20">
             <Star className="w-4 h-4 text-yellow-400" />
-            <span className="text-sm text-white/90">We're Here to Help</span>
+            <span className="text-sm text-white/90">
+              We&apos;re Here to Help
+            </span>
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-300 bg-clip-text text-transparent mb-6">
@@ -193,7 +195,7 @@ const ContactPage = () => {
               Get In Touch
             </h2>
             <p className="text-xl text-white/80 max-w-2xl mx-auto">
-              Fill out the form below and we'll get back to you as soon as
+              Fill out the form below and we&apos;ll get back to you as soon as
               possible.
             </p>
           </div>

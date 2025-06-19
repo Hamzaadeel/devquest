@@ -141,22 +141,18 @@ export default function TopicPage() {
         const [flashcards, cheatsheets] = await Promise.all([
           loadContent("flashcards") as Promise<Flashcard[]>,
           loadContent("cheatsheets") as Promise<Cheatsheet[]>,
-          // loadContent("mcqs") as Promise<MCQ[]>,
-          // loadContent("coding-samples") as Promise<CodingSample[]>,
         ]);
 
         console.log("Loaded content:", {
           flashcards: flashcards.length,
           cheatsheets: cheatsheets.length,
-          // mcqs: mcqs.length,
-          // codingSamples: codingSamples.length,
         });
 
         setContentData({
           flashcards,
           cheatsheets,
-          mcqs: [], // Not loaded in initial version
-          codingSamples: [], // Not loaded in initial version
+          mcqs: [],
+          codingSamples: [],
         });
       } catch (error) {
         console.error("Error loading content:", error);
@@ -166,7 +162,7 @@ export default function TopicPage() {
     };
 
     loadAllContent();
-  }, [slug]);
+  }, [slug, loadContent]);
 
   // Get unique subtopics from all content types (ordered by first appearance in flashcards)
   const subTopics = useMemo(() => {
@@ -220,14 +216,13 @@ export default function TopicPage() {
   };
 
   const getFilteredContent = () => {
-    let content: any[] = [];
+    let content: unknown[] = [];
 
     switch (activeTab) {
       case "flashcards":
         content = contentData.flashcards;
         break;
       case "cheatsheets":
-        // Show all cheatsheets, do not filter by subtopic
         content = contentData.cheatsheets;
         break;
       case "mcqs":
@@ -240,11 +235,16 @@ export default function TopicPage() {
         return [];
     }
 
-    return activeTab === "flashcards" &&
+    if (
+      activeTab === "flashcards" &&
       activeSubTopic &&
       activeSubTopic !== "all"
-      ? content.filter((item) => item.subTopic === activeSubTopic)
-      : content;
+    ) {
+      return (content as Flashcard[]).filter(
+        (item) => item.subTopic === activeSubTopic
+      );
+    }
+    return content;
   };
 
   const renderContent = () => {
@@ -324,15 +324,12 @@ export default function TopicPage() {
         let structuredCheatSheet: StructuredCheatsheet | null = null;
 
         if (content && typeof content === "object") {
-          if ("sections" in content) {
-            structuredCheatSheet = content as unknown as StructuredCheatsheet;
-          } else if (
+          if (
             Array.isArray(content) &&
             content.length > 0 &&
-            "sections" in content[0]
+            "sections" in (content[0] as any)
           ) {
-            structuredCheatSheet =
-              content[0] as unknown as StructuredCheatsheet;
+            structuredCheatSheet = content[0] as StructuredCheatsheet;
           }
         }
         if (structuredCheatSheet) {
