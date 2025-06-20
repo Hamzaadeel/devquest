@@ -7,15 +7,18 @@ export const javascriptCheatSheet = {
         {
           name: "var",
           description:
-            "Declares a variable globally or locally within a function.",
+            "Function-scoped and hoisted. Not recommended for modern code.",
+          code: "var x = 10;",
         },
         {
           name: "let",
-          description: "Declares a block-scoped variable.",
+          description: "Block-scoped variable. Reassignable.",
+          code: "let age = 25;",
         },
         {
           name: "const",
-          description: "Declares a block-scoped constant (read-only) variable.",
+          description: "Block-scoped constant. Cannot be reassigned.",
+          code: "const name = 'Ali';",
         },
       ],
     },
@@ -24,13 +27,18 @@ export const javascriptCheatSheet = {
       items: [
         {
           name: "For Loop",
-          description: "This loop will execute 5 times:",
+          description: "Loops a fixed number of times.",
           code: "for (let i = 0; i < 5; i++) {\n  console.log(i);\n}",
         },
         {
           name: "While Loop",
-          description: "This loop will execute 5 times:",
+          description: "Loops while a condition is true.",
           code: "let i = 0;\nwhile (i < 5) {\n  console.log(i);\n  i++;\n}",
+        },
+        {
+          name: "For...of Loop",
+          description: "Loops over iterable objects.",
+          code: "const arr = [1, 2, 3];\nfor (const item of arr) {\n  console.log(item);\n}",
         },
       ],
     },
@@ -38,95 +46,105 @@ export const javascriptCheatSheet = {
       title: "3. Conditional Statements",
       items: [
         {
-          name: "If statement",
-          code: "if (age >= 18) {\n  console.log('You are eligible to vote!');\n} else {\n  console.log('You are not eligible to vote yet.');\n}",
+          name: "If-Else",
+          description: "Runs different code based on a condition.",
+          code: "if (age >= 18) {\n  console.log('Adult');\n} else {\n  console.log('Minor');\n}",
+        },
+        {
+          name: "Switch",
+          description: "Checks one value against multiple cases.",
+          code: "const fruit = 'apple';\nswitch (fruit) {\n  case 'apple':\n    console.log('Apple');\n    break;\n  default:\n    console.log('Unknown fruit');\n}",
+        },
+        {
+          name: "Ternary Operator",
+          description: "Short syntax for if-else.",
+          code: "const access = age >= 18 ? 'Allowed' : 'Denied';",
         },
       ],
     },
     {
-      title: "Switch statement",
-      items: [
-        {
-          code: "let age = 20;\n\nswitch (true) {\n  case age >= 18:\n    console.log('You are eligible to vote!');\n    break;\n  default:\n    console.log('You are not eligible to vote yet.');\n    break;\n}",
-        },
-      ],
-    },
-    {
-      title: "4. String methods",
-      items: [
-        { name: "length", description: "Returns the length of a string." },
-        {
-          name: "toUpperCase()",
-          description: "Converts a string to uppercase.",
-        },
-        {
-          name: "toLowerCase()",
-          description: "Converts a string to lowercase.",
-        },
-        {
-          name: "charAt(index)",
-          description: "Returns the character at a specified index.",
-        },
-        {
-          name: 'includes("Hello")',
-          description:
-            'Checks if a string contains a specific substring (in this example, "Hello").',
-        },
-        {
-          name: 'split(",")',
-          description:
-            "Splits a string into an array of substrings based on a separator (in this example, a comma).",
-        },
-        {
-          name: "trim()",
-          description: "Removes whitespace from both ends of a string.",
-        },
-        {
-          name: "concat(string1, string2)",
-          description: "Joins two or more strings.",
-        },
-      ],
-    },
-    {
-      title: "5. Array methods",
+      title: "4. Strings & Arrays",
       items: [
         {
           name: "length",
-          description: "Returns the number of elements in an array.",
+          description: "Returns the length.",
+          code: "'Hi'.length // 2",
         },
         {
-          name: 'push("Joe")',
-          description: "Adds one or more elements to the end of an array.",
+          name: "toUpperCase()",
+          description: "Converts to uppercase.",
+          code: "'hello'.toUpperCase() // 'HELLO'",
         },
         {
-          name: "pop()",
-          description: "Removes the last element from an array.",
+          name: "split(',')",
+          description: "Splits into an array.",
+          code: "'a,b,c'.split(',') // ['a','b','c']",
         },
         {
-          name: "shift()",
-          description: "Removes the first element from an array.",
+          name: "trim()",
+          description: "Removes surrounding whitespace.",
+          code: "'  hi  '.trim() // 'hi'",
         },
         {
-          name: "unshift()",
-          description:
-            "Adds one or more elements to the beginning of an array.",
-        },
-        {
-          name: "indexOf()",
-          description:
-            "Returns the first index at which a specified element is found.",
-        },
-        {
-          name: "forEach()",
-          description:
-            "Executes a provided function once for each array element. Example:",
-          code: "numbers.forEach((number) => {\n  console.log(number);\n});",
+          name: "push()",
+          description: "Adds to end of array.",
+          code: "arr.push(4);",
         },
         {
           name: "map()",
+          description: "Transforms each item.",
+          code: "[1, 2].map(n => n * 2) // [2, 4]",
+        },
+      ],
+    },
+    {
+      title: "5. Functions & ES6 Features",
+      items: [
+        {
+          name: "Arrow Functions",
+          description: "Short syntax & lexical `this`.",
+          code: "const greet = name => 'Hi ' + name;",
+        },
+        {
+          name: "Default Parameters",
+          description: "Provide default values.",
+          code: "function greet(name = 'Guest') { return 'Hi ' + name; }",
+        },
+        {
+          name: "Spread Operator",
+          description: "Expands arrays/objects.",
+          code: "const arr = [1, 2]; const newArr = [...arr, 3];",
+        },
+        {
+          name: "Rest Parameters",
+          description: "Collects arguments.",
+          code: "function sum(...nums) { return nums.reduce((a, b) => a + b); }",
+        },
+        {
+          name: "Template Literals",
+          description: "Embed expressions in strings.",
+          code: "const name = 'Ali';\n`Hello, ${name}`",
+        },
+      ],
+    },
+    {
+      title: "6. Async JavaScript",
+      items: [
+        {
+          name: "Promises",
+          description: "Handle async operations.",
+          code: "fetch('/api')\n  .then(res => res.json())\n  .then(data => console.log(data));",
+        },
+        {
+          name: "Async/Await",
+          description: "Cleaner syntax for promises.",
+          code: "async function getData() {\n  const res = await fetch('/api');\n  const data = await res.json();\n  console.log(data);\n}",
+        },
+        {
+          name: "Event Loop",
           description:
-            "Creates a new array by performing a function on each array element. Example:",
-          code: "const doubledNumbers = numbers.map((number) => {\n  return number * 2;\n});",
+            "Handles async tasks using call stack and callback queue.",
+          code: "console.log('Start');\nsetTimeout(() => console.log('Timeout'), 0);\nconsole.log('End'); // Output: Start, End, Timeout",
         },
       ],
     },

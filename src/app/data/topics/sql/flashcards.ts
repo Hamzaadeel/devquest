@@ -1,148 +1,208 @@
 const sqlFlashcards = [
+  // 1. Basics
   {
     question: "What is SQL?",
     answer:
-      "SQL stands for Structured Query Language. It is used to manage and manipulate relational databases.",
+      "SQL (Structured Query Language) is used to interact with relational databases — for querying, inserting, updating, and managing data.",
     subTopic: "Basics",
   },
   {
     question: "What is the difference between SQL and MySQL?",
     answer:
-      "SQL is a query language, while MySQL is a relational database management system that uses SQL.",
+      "SQL is the language for querying databases. MySQL is a database management system that uses SQL to interact with data.",
     subTopic: "Basics",
   },
   {
-    question: "What is PostgreSQL?",
+    question: "What are some popular SQL databases?",
     answer:
-      "PostgreSQL is an open-source, advanced relational database known for standards compliance and support for complex queries.",
-    subTopic: "PostgreSQL",
-  },
-  {
-    question: "What is MySQL Workbench?",
-    answer:
-      "MySQL Workbench is a visual database design tool used to model, develop, and manage MySQL databases.",
-    subTopic: "MySQL",
-  },
-  {
-    question: "What is a primary key?",
-    answer:
-      "A primary key uniquely identifies each row in a table and cannot contain NULL values.",
-    subTopic: "Keys",
-  },
-  {
-    question: "What is a foreign key?",
-    answer:
-      "A foreign key is a column that refers to the primary key of another table to create relationships between tables.",
-    subTopic: "Keys",
-  },
-  {
-    question: "What is a JOIN in SQL?",
-    answer:
-      "JOIN is used to combine rows from two or more tables based on a related column.",
-    subTopic: "Joins",
-  },
-  {
-    question: "What are the types of JOINs in SQL?",
-    answer: "INNER JOIN, LEFT JOIN, RIGHT JOIN, and FULL OUTER JOIN.",
-    subTopic: "Joins",
-  },
-  {
-    question: "What does the SELECT statement do?",
-    answer: "SELECT is used to retrieve data from a database table.",
-    subTopic: "Basic Queries",
-  },
-  {
-    question: "How do you filter results in SQL?",
-    answer: "Use the WHERE clause to filter rows based on a condition.",
-    subTopic: "Basic Queries",
-  },
-  {
-    question: "How do you sort data in SQL?",
-    answer: "Use ORDER BY followed by column name and ASC or DESC for sorting.",
-    subTopic: "Basic Queries",
-  },
-  {
-    question: "What is the difference between WHERE and HAVING?",
-    answer:
-      "WHERE filters rows before grouping, while HAVING filters after grouping with aggregate functions.",
-    subTopic: "Clauses",
-  },
-  {
-    question: "What is GROUP BY used for?",
-    answer:
-      "GROUP BY groups rows that have the same values in specified columns and is often used with aggregate functions.",
-    subTopic: "Aggregation",
-  },
-  {
-    question: "What are aggregate functions in SQL?",
-    answer:
-      "Functions like COUNT, SUM, AVG, MAX, and MIN that perform calculations on multiple rows.",
-    subTopic: "Aggregation",
-  },
-  {
-    question: "How do you insert data into a table?",
-    answer:
-      "Use the INSERT INTO statement followed by column names and values.",
-    subTopic: "CRUD",
-  },
-  {
-    question: "How do you update data in a table?",
-    answer: "Use the UPDATE statement with SET to modify existing records.",
-    subTopic: "CRUD",
-  },
-  {
-    question: "How do you delete data from a table?",
-    answer: "Use the DELETE FROM statement with a WHERE clause.",
-    subTopic: "CRUD",
-  },
-  {
-    question: "How do you create a table in SQL?",
-    answer: "Use the CREATE TABLE statement with column names and data types.",
-    subTopic: "DDL",
+      "PostgreSQL, MySQL, SQLite, and Oracle — all of which use SQL syntax with slight variations.",
+    subTopic: "Basics",
   },
   {
     question: "What is normalization?",
     answer:
-      "Normalization is the process of organizing data to reduce redundancy and improve integrity.",
-    subTopic: "Database Design",
+      "Normalization is organizing data to minimize redundancy. It involves dividing large tables into smaller related ones.",
+    subTopic: "Basics",
   },
+
+  // 2. Queries & Clauses
+  {
+    question: "What does the SELECT statement do?",
+    answer:
+      "SELECT retrieves data from one or more tables. Example: SELECT * FROM users;",
+    subTopic: "Queries & Clauses",
+  },
+  {
+    question: "How do you filter results in SQL?",
+    answer:
+      "Use the WHERE clause. Example: SELECT * FROM users WHERE age > 25;",
+    subTopic: "Queries & Clauses",
+  },
+  {
+    question: "How do you sort data in SQL?",
+    answer: "Use ORDER BY. Example: SELECT * FROM users ORDER BY name ASC;",
+    subTopic: "Queries & Clauses",
+  },
+  {
+    question: "How do you limit results in SQL?",
+    answer:
+      "Use LIMIT (PostgreSQL, MySQL, SQLite) or FETCH FIRST (Oracle). Example: SELECT * FROM users LIMIT 5;",
+    subTopic: "Queries & Clauses",
+  },
+  {
+    question: "What is the difference between WHERE and HAVING?",
+    answer:
+      "WHERE filters rows before aggregation. HAVING filters groups after aggregation. Example: HAVING COUNT(*) > 1",
+    subTopic: "Queries & Clauses",
+  },
+  {
+    question: "What is the LIKE operator used for?",
+    answer:
+      "LIKE is used for pattern matching. Example: SELECT * FROM users WHERE name LIKE 'A%';",
+    subTopic: "Queries & Clauses",
+  },
+  {
+    question: "What does the IN operator do?",
+    answer:
+      "IN allows filtering based on a list of values. Example: WHERE status IN ('active', 'pending');",
+    subTopic: "Queries & Clauses",
+  },
+
+  // 3. Joins & Keys
+  {
+    question: "What is a JOIN in SQL?",
+    answer:
+      "JOIN combines rows from two or more tables based on a related column.",
+    subTopic: "Joins & Keys",
+  },
+  {
+    question: "What are the types of JOINs?",
+    answer:
+      "INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL OUTER JOIN — each returns different combinations of matched and unmatched rows.",
+    subTopic: "Joins & Keys",
+  },
+  {
+    question: "What is a primary key?",
+    answer:
+      "A column (or set) that uniquely identifies each row. It must be unique and not NULL.",
+    subTopic: "Joins & Keys",
+  },
+  {
+    question: "What is a foreign key?",
+    answer:
+      "A column that references a primary key in another table, creating a relationship.",
+    subTopic: "Joins & Keys",
+  },
+
+  // 4. CRUD & Table Design
+  {
+    question: "How do you insert data into a table?",
+    answer:
+      "Use INSERT INTO. Example: INSERT INTO users (name, age) VALUES ('Alice', 25);",
+    subTopic: "CRUD & Tables",
+  },
+  {
+    question: "How do you update data in a table?",
+    answer:
+      "Use UPDATE with SET. Example: UPDATE users SET age = 30 WHERE name = 'Alice';",
+    subTopic: "CRUD & Tables",
+  },
+  {
+    question: "How do you delete data from a table?",
+    answer: "Use DELETE FROM. Example: DELETE FROM users WHERE age < 18;",
+    subTopic: "CRUD & Tables",
+  },
+  {
+    question: "How do you create a table in SQL?",
+    answer:
+      "Use CREATE TABLE. Example: CREATE TABLE users (id SERIAL PRIMARY KEY, name VARCHAR(50));",
+    subTopic: "CRUD & Tables",
+  },
+  {
+    question: "How do you rename a table in SQL?",
+    answer: "Use RENAME TABLE. Example: RENAME TABLE old_name TO new_name;",
+    subTopic: "CRUD & Tables",
+  },
+  {
+    question: "How do you add a new column to an existing table?",
+    answer:
+      "Use ALTER TABLE. Example: ALTER TABLE users ADD COLUMN email VARCHAR(100);",
+    subTopic: "CRUD & Tables",
+  },
+
+  // 5. Aggregation & Functions
+  {
+    question: "What is GROUP BY used for?",
+    answer:
+      "It groups rows that share a value. Often used with COUNT, SUM, etc. Example: GROUP BY department;",
+    subTopic: "Aggregation & Functions",
+  },
+  {
+    question: "What are aggregate functions in SQL?",
+    answer:
+      "COUNT, SUM, AVG, MAX, MIN — used to calculate values from multiple rows.",
+    subTopic: "Aggregation & Functions",
+  },
+  {
+    question: "What does the COUNT function do?",
+    answer: "Returns the number of rows. Example: SELECT COUNT(*) FROM users;",
+    subTopic: "Aggregation & Functions",
+  },
+
+  // 6. Transactions & Database Systems
   {
     question: "What is a transaction in SQL?",
     answer:
-      "A transaction is a sequence of SQL operations executed as a single unit, often using BEGIN, COMMIT, and ROLLBACK.",
-    subTopic: "Transactions",
+      "A transaction is a unit of work done in steps: BEGIN, COMMIT, ROLLBACK. Ensures atomicity.",
+    subTopic: "Transactions & Systems",
   },
   {
-    question: "What is ACID in databases?",
+    question: "What is ACID in SQL databases?",
     answer:
-      "ACID stands for Atomicity, Consistency, Isolation, Durability — properties that ensure reliable transactions.",
-    subTopic: "Transactions",
+      "ACID stands for Atomicity, Consistency, Isolation, Durability — guarantees for reliable transactions.",
+    subTopic: "Transactions & Systems",
   },
   {
-    question: "How do you use LIMIT in SQL?",
+    question: "How do you connect to PostgreSQL via terminal?",
+    answer: "Use: psql -U username -d dbname",
+    subTopic: "Transactions & Systems",
+  },
+  {
+    question: "How do you create a user in PostgreSQL?",
+    answer: "Use: CREATE USER username WITH PASSWORD 'password';",
+    subTopic: "Transactions & Systems",
+  },
+  {
+    question: "What is the default PostgreSQL port?",
+    answer: "Port 5432 is used by default.",
+    subTopic: "Transactions & Systems",
+  },
+  {
+    question: "How do you connect to MySQL from terminal?",
+    answer: "Use: mysql -u root -p",
+    subTopic: "Transactions & Systems",
+  },
+  {
+    question: "How do you list all databases in MySQL?",
+    answer: "Use: SHOW DATABASES;",
+    subTopic: "Transactions & Systems",
+  },
+  {
+    question: "How do you select a specific database in MySQL?",
+    answer: "Use: USE dbname;",
+    subTopic: "Transactions & Systems",
+  },
+  {
+    question: "What is MySQL Workbench used for?",
     answer:
-      "LIMIT restricts the number of rows returned in a query, like LIMIT 5 for the top 5 results.",
-    subTopic: "Query Control",
+      "It's a GUI tool used for SQL development, database design, server administration, and user management.",
+    subTopic: "Transactions & Systems",
   },
   {
-    question: "What is the default port for PostgreSQL?",
-    answer: "The default port for PostgreSQL is 5432.",
-    subTopic: "PostgreSQL",
-  },
-  {
-    question: "How do you connect to PostgreSQL from the terminal?",
-    answer: "Use the `psql` command: `psql -U username -d dbname`.",
-    subTopic: "PostgreSQL",
-  },
-  {
-    question: "How do you create a new user in PostgreSQL?",
-    answer: "Use `CREATE USER username WITH PASSWORD 'password';`.",
-    subTopic: "PostgreSQL",
-  },
-  {
-    question: "How do you check the current database in PostgreSQL?",
-    answer: "Run the SQL command `SELECT current_database();`.",
-    subTopic: "PostgreSQL",
+    question: "Can you run SQL queries in MySQL Workbench?",
+    answer:
+      "Yes, use the SQL Editor to write and execute queries against a connected database.",
+    subTopic: "Transactions & Systems",
   },
 ];
 

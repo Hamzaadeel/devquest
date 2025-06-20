@@ -2,22 +2,22 @@ export const angularCheatSheet = {
   title: "Angular Cheat Sheet",
   sections: [
     {
-      title: "1. Component Basics",
+      title: "1. Components & Templates",
       items: [
         {
           name: "Component Decorator",
-          description: "Defines a component.",
+          description: "Defines a class as an Angular component.",
           code: "@Component({ selector: 'app-root', templateUrl: './app.component.html' })",
         },
         {
-          name: "Data Binding",
-          description: "Interpolation and property binding.",
-          code: '<h1>{{ title }}</h1>\n<img [src]="imageUrl">',
+          name: "Interpolation",
+          description: "Display component data in template.",
+          code: "<h1>{{ title }}</h1>",
         },
         {
-          name: "Event Binding",
-          description: "Handle DOM events.",
-          code: '<button (click)="handleClick()">Click</button>',
+          name: "Property & Event Binding",
+          description: "Bind values and events between class and DOM.",
+          code: '<img [src]="imageUrl">\n<button (click)="handleClick()">Click</button>',
         },
       ],
     },
@@ -26,17 +26,17 @@ export const angularCheatSheet = {
       items: [
         {
           name: "*ngIf",
-          description: "Conditionally render elements.",
+          description: "Conditionally include elements in the DOM.",
           code: '<p *ngIf="isVisible">Visible!</p>',
         },
         {
           name: "*ngFor",
-          description: "Loop through lists.",
+          description: "Repeat element for each item in a list.",
           code: '<li *ngFor="let item of items">{{ item }}</li>',
         },
         {
           name: "[ngClass]",
-          description: "Apply CSS classes dynamically.",
+          description: "Add/remove classes dynamically.",
           code: '<div [ngClass]="{ active: isActive }"></div>',
         },
       ],
@@ -46,12 +46,12 @@ export const angularCheatSheet = {
       items: [
         {
           name: "Injectable Service",
-          description: "Create and use services.",
+          description: "Define a service to be injected.",
           code: "@Injectable({ providedIn: 'root' })\nexport class MyService { }",
         },
         {
-          name: "Dependency Injection",
-          description: "Inject services into components.",
+          name: "Inject Service",
+          description: "Use service inside component.",
           code: "constructor(private myService: MyService) {}",
         },
       ],
@@ -60,18 +60,18 @@ export const angularCheatSheet = {
       title: "4. Routing",
       items: [
         {
-          name: "RouterModule",
-          description: "Enable routing in your app.",
+          name: "RouterModule Setup",
+          description: "Configure routes in your app.",
           code: "RouterModule.forRoot([{ path: 'home', component: HomeComponent }])",
         },
         {
           name: "Router Outlet",
-          description: "Display routed views.",
+          description: "Placeholder for routed component view.",
           code: "<router-outlet></router-outlet>",
         },
         {
           name: "RouterLink",
-          description: "Navigation link.",
+          description: "Create navigation links.",
           code: "<a routerLink='/home'>Home</a>",
         },
       ],
@@ -80,14 +80,29 @@ export const angularCheatSheet = {
       title: "5. Forms",
       items: [
         {
-          name: "Template-driven",
-          description: "Simple form syntax.",
+          name: "Template-driven Form",
+          description: "Simple two-way binding using ngModel.",
           code: '<input [(ngModel)]="user.name">',
         },
         {
-          name: "Reactive Forms",
-          description: "Use FormBuilder for structured forms.",
+          name: "Reactive Form",
+          description: "Structured and scalable form building.",
           code: "this.form = this.fb.group({ name: [''] });",
+        },
+      ],
+    },
+    {
+      title: "6. HTTP & Observables",
+      items: [
+        {
+          name: "HttpClient Service",
+          description: "Make HTTP requests using Angular service.",
+          code: "constructor(private http: HttpClient) {}\ngetData() {\n  this.http.get('/api/data').subscribe(data => console.log(data));\n}",
+        },
+        {
+          name: "Observable",
+          description: "Used to handle asynchronous operations.",
+          code: "this.observable$.subscribe(value => console.log(value));",
         },
       ],
     },

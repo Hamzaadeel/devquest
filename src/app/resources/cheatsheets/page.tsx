@@ -172,16 +172,6 @@ const CheatSheetsPage = () => {
                         </div>
                       </div>
                       <div className="flex items-center space-x-6">
-                        {/* <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
-                          <div className="flex items-center">
-                            <Clock className="w-4 h-4 mr-1" />
-                            <span>{topic.estimatedTime}</span>
-                          </div>
-                          <div className="flex items-center">
-                            <BookOpen className="w-4 h-4 mr-1" />
-                            <span>{topic.lessonsCount} lessons</span>
-                          </div>
-                        </div> */}
                         <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-blue-500 group-hover:translate-x-1 transition-all duration-200" />
                       </div>
                     </div>

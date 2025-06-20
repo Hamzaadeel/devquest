@@ -2,120 +2,134 @@ const oopFlashcards = [
   {
     question: "What is Object-Oriented Programming (OOP)?",
     answer:
-      "A programming paradigm based on the concept of objects that contain data and methods.",
+      "A programming style where code is organized around objects — like real-world items — that have data (properties) and behavior (methods). For example: A car object can have data like color and speed, and behaviors like drive() or stop().",
+    subTopic: "OOP Basics",
+  },
+  {
+    question: "Why use OOP?",
+    answer:
+      "To write cleaner code, reuse parts of the code easily, and better model real-world problems. For example: Instead of rewriting 'car' code for every car, just make one car class and create multiple car objects.",
     subTopic: "OOP Basics",
   },
   {
     question: "What is a class?",
     answer:
-      "A blueprint for creating objects, defining their properties and behaviors.",
-    subTopic: "Classes",
+      "A blueprint to create objects. It defines what data and behaviors the objects will have. For example: A class 'Dog' can have name, breed, and methods like bark().",
+    subTopic: "Classes and Objects",
   },
   {
     question: "What is an object?",
     answer:
-      "An instance of a class that holds data and can perform actions using methods.",
-    subTopic: "Objects",
+      "An object is a real-world instance of a class. For example: From the 'Dog' class, we can make an object like 'myDog' with name='Buddy' and breed='Labrador'.",
+    subTopic: "Classes and Objects",
+  },
+  {
+    question: "What is the difference between a class and an object?",
+    answer:
+      "A class is the design; an object is the product. For example: A class is like a cookie cutter, and an object is the cookie made with it.",
+    subTopic: "Classes and Objects",
   },
   {
     question: "What is encapsulation?",
     answer:
-      "The practice of hiding internal details and exposing only what is necessary.",
-    subTopic: "Encapsulation",
+      "Hiding the internal details of how something works and only showing the necessary parts. For example: A TV remote hides the complex wiring inside — you just use the buttons.",
+    subTopic: "Encapsulation and Access Modifiers",
+  },
+  {
+    question: "What are access modifiers?",
+    answer:
+      "They define what can be accessed from outside a class. For example: 'Public' means anyone can access, 'private' means only inside the class. Like private diary pages vs. public blog posts.",
+    subTopic: "Encapsulation and Access Modifiers",
+  },
+  {
+    question: "What is the 'this' keyword?",
+    answer:
+      "'this' refers to the current object in a class method. For example: If Dog has a method sayName(), this.name means the name of that specific dog object.",
+    subTopic: "Encapsulation and Access Modifiers",
   },
   {
     question: "What is inheritance?",
     answer:
-      "A way for one class to use the properties and methods of another class.",
-    subTopic: "Inheritance",
-  },
-  {
-    question: "What is polymorphism?",
-    answer:
-      "The ability of different objects to respond to the same method in different ways.",
-    subTopic: "Polymorphism",
-  },
-  {
-    question: "What is abstraction?",
-    answer:
-      "Hiding complex details and showing only the essential features of an object.",
-    subTopic: "Abstraction",
-  },
-  {
-    question: "What is a constructor?",
-    answer:
-      "A special method that is called when an object is created to initialize it.",
-    subTopic: "Constructors",
-  },
-  {
-    question: "What is a method?",
-    answer:
-      "A function defined inside a class that describes the behaviors of an object.",
-    subTopic: "Methods",
-  },
-  {
-    question: "What is a property or attribute?",
-    answer: "A variable that belongs to an object or class and holds data.",
-    subTopic: "Properties",
-  },
-  {
-    question: "What is method overloading?",
-    answer:
-      "Defining multiple methods with the same name but different parameters in a class.",
-    subTopic: "Polymorphism",
-  },
-  {
-    question: "What is method overriding?",
-    answer:
-      "Replacing a method of a parent class with a new version in a child class.",
-    subTopic: "Polymorphism",
-  },
-  {
-    question: "What is the difference between class and object?",
-    answer:
-      "A class is a template; an object is a specific instance of that class.",
-    subTopic: "Classes vs Objects",
-  },
-  {
-    question:
-      "What is the difference between private and public access modifiers?",
-    answer:
-      "Public members can be accessed from anywhere; private members can only be accessed within the class.",
-    subTopic: "Encapsulation",
-  },
-  {
-    question: "What is the 'this' keyword?",
-    answer: "A reference to the current object inside a class method.",
-    subTopic: "Keywords",
+      "A way for one class to use code from another. For example: A 'Bird' class can be extended by a 'Parrot' class to inherit flying ability.",
+    subTopic: "Inheritance and Reusability",
   },
   {
     question: "What is multiple inheritance?",
     answer:
-      "A class inheriting from more than one class. Some languages like Java do not support it directly.",
-    subTopic: "Inheritance",
+      "When a class inherits from more than one class. For example: If 'FlyingCar' inherits from both 'Car' and 'Plane'. Some languages (like Java) don't support this directly.",
+    subTopic: "Inheritance and Reusability",
   },
   {
-    question: "What is a static method?",
-    answer: "A method that belongs to the class, not instances of the class.",
-    subTopic: "Methods",
+    question: "What is method overriding?",
+    answer:
+      "When a subclass provides its own version of a method from the parent class. For example: A generic Animal class may have a makeSound() method, and Dog overrides it to bark.",
+    subTopic: "Inheritance and Reusability",
+  },
+  {
+    question: "What is polymorphism?",
+    answer:
+      "The ability of different objects to respond to the same method in their own way. For example: A 'draw()' method can draw a circle, square, or triangle based on the object.",
+    subTopic: "Polymorphism and Flexibility",
+  },
+  {
+    question: "What is method overloading?",
+    answer:
+      "Defining multiple methods with the same name but different parameters. For example: An 'add()' method might add two or three numbers depending on how it's called.",
+    subTopic: "Polymorphism and Flexibility",
+  },
+  {
+    question: "What is abstraction?",
+    answer:
+      "Hiding complex logic and showing only essential features. For example: You use a coffee machine by pressing a button — no need to know the internal process.",
+    subTopic: "Abstraction and Design",
   },
   {
     question: "What is an abstract class?",
     answer:
-      "A class that cannot be instantiated and may have abstract methods without implementation.",
-    subTopic: "Abstraction",
+      "A class that can't create objects directly and may contain abstract methods. For example: 'Shape' might be abstract — you can't draw a generic shape but can draw a Circle or Square.",
+    subTopic: "Abstraction and Design",
   },
   {
     question: "What is an interface?",
     answer:
-      "A contract that defines methods a class must implement without providing code.",
-    subTopic: "Abstraction",
+      "A list of methods a class must implement. It's like a contract. For example: A 'Drivable' interface may require a drive() method, and any vehicle must define it.",
+    subTopic: "Abstraction and Design",
   },
   {
-    question: "Why use OOP?",
+    question: "What is a constructor?",
     answer:
-      "To organize code better, improve reusability, make maintenance easier, and model real-world problems.",
-    subTopic: "OOP Benefits",
+      "A special method that runs when an object is created, used to initialize values. For example: When creating a Dog object, the constructor sets the name and breed.",
+    subTopic: "Classes and Objects",
+  },
+  {
+    question: "What is a static method?",
+    answer:
+      "A method that belongs to the class itself, not to an object. For example: Math.sqrt() is a static method — you don’t create a Math object to use it.",
+    subTopic: "Classes and Objects",
+  },
+  {
+    question: "What is a method?",
+    answer:
+      "A function inside a class that defines a behavior. For example: A 'bark()' method in the Dog class makes the dog bark.",
+    subTopic: "Classes and Objects",
+  },
+  {
+    question: "What is a property (or attribute)?",
+    answer:
+      "A variable inside a class that holds data. For example: A Dog class might have a 'name' property.",
+    subTopic: "Classes and Objects",
+  },
+  {
+    question: "What is composition in OOP?",
+    answer:
+      "A design principle where objects are made from other objects. For example: A 'Car' object can have an 'Engine' object inside it, instead of inheriting from Engine.",
+    subTopic: "Abstraction and Design",
+  },
+  {
+    question: "What is the difference between composition and inheritance?",
+    answer:
+      "Inheritance is 'is-a', composition is 'has-a'. For example: A Dog is an Animal (inheritance), a Car has an Engine (composition).",
+    subTopic: "Abstraction and Design",
   },
 ];
 

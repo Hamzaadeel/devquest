@@ -6,27 +6,32 @@ export const programmingFundamentalsCheatSheet = {
       items: [
         {
           name: "let",
-          description: "Declares a block-scoped variable. Can be reassigned.",
+          description:
+            "Declares a variable that can change. Like using a labeled box where you can swap the item inside.",
+          code: "let age = 5;\nage = 6;",
         },
         {
           name: "const",
           description:
-            "Declares a block-scoped constant. Cannot be reassigned.",
+            "Declares a variable that cannot change. Like labeling a jar permanently and sealing it.",
+          code: "const PI = 3.14;\n// PI = 3.14159; // Error",
         },
         {
           name: "var",
           description:
-            "Declares a function-scoped or globally-scoped variable (legacy).",
+            "Old way to declare a variable. Function-scoped. Behaves differently than let/const.",
+          code: "var name = 'Ali';\nname = 'Sara';",
         },
         {
           name: "Naming Rules",
-          description:
-            "Must begin with a letter, _, or $. Cannot use reserved keywords. Case-sensitive.",
+          description: "Start with letter, _ or $. No spaces. Case-sensitive.",
+          code: "let userName = 'Ali';\nlet $total = 100;\nlet _count = 5;",
         },
         {
           name: "Best Practices",
           description:
-            "Use descriptive names, camelCase for variables, and UPPER_CASE for constants.",
+            "Use camelCase for variables and UPPER_CASE for constants.",
+          code: "let userAge = 25;\nconst MAX_USERS = 100;",
         },
       ],
     },
@@ -36,17 +41,20 @@ export const programmingFundamentalsCheatSheet = {
         {
           name: "Global Scope",
           description:
-            "Declared outside all blocks or functions. Accessible everywhere.",
+            "Available everywhere. Like writing something on a billboard.",
+          code: "let color = 'blue';\nfunction showColor() {\n  console.log(color);\n}",
         },
         {
           name: "Local/Block Scope",
           description:
-            "Declared inside a function or block using let/const. Limited visibility.",
+            "Only inside a block. Like writing on a whiteboard in your room.",
+          code: "if (true) {\n  let message = 'Hi';\n  console.log(message);\n}\n// console.log(message); // Error",
         },
         {
           name: "Scope Chain",
           description:
-            "Inner scopes can access outer variables. Not the other way around.",
+            "Inner scopes can access outer variables, not the other way around.",
+          code: "let outer = 'visible';\nfunction parent() {\n  console.log(outer);\n}",
         },
       ],
     },
@@ -55,17 +63,18 @@ export const programmingFundamentalsCheatSheet = {
       items: [
         {
           name: "Function Declaration",
-          description: "Defines a named function.",
+          description:
+            "Reusable block of code. Like a machine that takes input and gives output.",
           code: "function greet(name) {\n  return 'Hello ' + name;\n}",
         },
         {
           name: "Function Expression",
-          description: "Assigns a function to a variable.",
+          description: "Function stored in a variable.",
           code: "const greet = function(name) {\n  return 'Hi ' + name;\n};",
         },
         {
           name: "Arrow Function",
-          description: "Shorter syntax for function expressions.",
+          description: "Shorter way to write a function.",
           code: "const greet = (name) => 'Hey ' + name;",
         },
       ],
@@ -75,18 +84,18 @@ export const programmingFundamentalsCheatSheet = {
       items: [
         {
           name: "Default Parameters",
-          description: "Assign default values to parameters.",
-          code: "function add(a, b = 5) {\n  return a + b;\n}",
+          description: "Use a default value if none provided.",
+          code: "function greet(name = 'Guest') {\n  return 'Hello ' + name;\n}",
         },
         {
           name: "Rest Parameters",
-          description: "Accepts multiple values as an array.",
+          description: "Accept multiple values as an array.",
           code: "function sum(...nums) {\n  return nums.reduce((a, b) => a + b);\n}",
         },
         {
           name: "Argument Validation",
-          description: "Check types or conditions before using.",
-          code: "if (typeof x !== 'number') throw Error('Not a number');",
+          description: "Check inputs before using them.",
+          code: "function printAge(age) {\n  if (typeof age !== 'number') throw Error('Not a number');\n  console.log(age);\n}",
         },
       ],
     },
@@ -95,23 +104,23 @@ export const programmingFundamentalsCheatSheet = {
       items: [
         {
           name: "For Loop",
-          description: "Traditional loop with condition and increment.",
+          description: "Repeat a block of code a fixed number of times.",
           code: "for (let i = 0; i < 3; i++) {\n  console.log(i);\n}",
         },
         {
           name: "While Loop",
-          description: "Runs while the condition is true.",
+          description: "Run as long as a condition is true.",
           code: "let i = 0;\nwhile (i < 3) {\n  console.log(i);\n  i++;\n}",
         },
         {
           name: "Do-While Loop",
-          description: "Runs at least once, then checks condition.",
+          description: "Run once, then check condition.",
           code: "let i = 0;\ndo {\n  console.log(i);\n  i++;\n} while (i < 3);",
         },
         {
           name: "For...of Loop",
-          description: "Iterates over iterable values (e.g., arrays).",
-          code: "for (const item of array) {\n  console.log(item);\n}",
+          description: "Iterate over items in a collection.",
+          code: "const fruits = ['apple', 'banana'];\nfor (const fruit of fruits) {\n  console.log(fruit);\n}",
         },
       ],
     },
@@ -120,23 +129,23 @@ export const programmingFundamentalsCheatSheet = {
       items: [
         {
           name: "If-Else",
-          description: "Executes blocks based on condition.",
-          code: "if (score > 90) {\n  grade = 'A';\n} else {\n  grade = 'B';\n}",
+          description: "Choose between actions.",
+          code: "if (age > 18) {\n  console.log('Adult');\n} else {\n  console.log('Minor');\n}",
         },
         {
           name: "Switch",
-          description: "Multiple case matching.",
-          code: "switch (value) {\n  case 1: break;\n  default: break;\n}",
+          description: "Match one of several options.",
+          code: "let fruit = 'apple';\nswitch (fruit) {\n  case 'apple':\n    console.log('Apple');\n    break;\n  default:\n    console.log('Other');\n}",
         },
         {
           name: "Ternary",
-          description: "Short form conditional.",
-          code: "const result = age > 18 ? 'Adult' : 'Minor';",
+          description: "Short form of if-else.",
+          code: "let result = score > 90 ? 'A' : 'B';",
         },
         {
           name: "Guard Clause",
-          description: "Early return pattern for cleaner logic.",
-          code: "if (!user) return;\nprocessUser(user);",
+          description: "Exit early to avoid deep nesting.",
+          code: "function process(user) {\n  if (!user) return;\n  console.log(user.name);\n}",
         },
       ],
     },
@@ -145,20 +154,23 @@ export const programmingFundamentalsCheatSheet = {
       items: [
         {
           name: "AND (&&)",
-          description: "Returns true only if both operands are true.",
+          description: "True if both sides are true.",
+          code: "true && false // false",
         },
         {
           name: "OR (||)",
-          description: "Returns true if at least one operand is true.",
+          description: "True if at least one side is true.",
+          code: "true || false // true",
         },
         {
           name: "NOT (!)",
-          description: "Inverts a boolean value.",
+          description: "Inverts true/false.",
+          code: "!true // false",
         },
         {
           name: "Short-Circuiting",
-          description: "Stops evaluating if result is already known.",
-          code: "user && user.name // safe access",
+          description: "Skip checking if already determined.",
+          code: "user && user.name",
         },
       ],
     },
@@ -167,17 +179,18 @@ export const programmingFundamentalsCheatSheet = {
       items: [
         {
           name: "Primitive Types",
-          description:
-            "Number, String, Boolean, Null, Undefined, Symbol, BigInt",
+          description: "Simple values like numbers or strings.",
+          code: "let age = 20;\nlet name = 'Ali';\nlet isAdult = true;",
         },
         {
           name: "Reference Types",
-          description:
-            "Object, Array, Function, Date, RegExp (non-primitive, mutable)",
+          description: "More complex structures like objects and arrays.",
+          code: "let user = { name: 'Sara' };\nlet scores = [100, 90];",
         },
         {
           name: "Type Checking",
-          description: "Use typeof, instanceof, Array.isArray().",
+          description: "Check value type.",
+          code: "typeof 'Ali' // 'string'\nArray.isArray([]) // true",
         },
       ],
     },
@@ -186,16 +199,18 @@ export const programmingFundamentalsCheatSheet = {
       items: [
         {
           name: "Explicit",
-          description: "Number('123'), String(123), Boolean(1), parseInt('42')",
+          description: "You convert types manually.",
+          code: "Number('5') // 5\nString(5) // '5'",
         },
         {
           name: "Implicit",
-          description: "'5' + 3 → '53'; '5' - 3 → 2; true + false → 1",
+          description: "JavaScript auto-converts values.",
+          code: "'5' + 2 // '52'\n'5' - 2 // 3",
         },
         {
           name: "Falsy Values",
-          description:
-            "false, 0, '', null, undefined, NaN are all considered false in conditionals.",
+          description: "Values treated as false in logic.",
+          code: "false, 0, '', null, undefined, NaN",
         },
       ],
     },

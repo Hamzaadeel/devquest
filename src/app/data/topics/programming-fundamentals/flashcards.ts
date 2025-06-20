@@ -1,228 +1,244 @@
 const programmingFundamentalsFlashcards = [
-  // Variables
+  // 1. Variables and Constants
   {
     question: "What is a variable?",
     answer:
-      "A storage location paired with a symbolic name, which contains some known or unknown value.",
-    subTopic: "Variables",
+      "A storage location paired with a name to hold data. For example: let age = 25; // 'age' is the variable storing 25",
+    subTopic: "Variables and Constants",
   },
   {
     question:
       "What is the difference between declaration and initialization of a variable?",
     answer:
-      "Declaration creates a variable and reserves memory, while initialization assigns an initial value to the variable.",
-    subTopic: "Variables",
+      "Declaration is creating the variable; initialization is assigning it a value. For example: let x; // declared, x = 10; // initialized",
+    subTopic: "Variables and Constants",
   },
   {
     question: "What is variable scope?",
     answer:
-      "The region of code where a variable can be accessed. It determines the visibility and lifetime of variables.",
-    subTopic: "Variables",
+      "Scope is the part of the program where a variable is accessible. For example: variables inside a function can't be used outside it.",
+    subTopic: "Variables and Constants",
   },
   {
     question: "What are local and global variables?",
     answer:
-      "Local variables are declared inside a function and can only be accessed within that function. Global variables are declared outside functions and can be accessed from anywhere in the program.",
-    subTopic: "Variables",
+      "Local variables exist only inside functions; global variables are accessible throughout the program. For example: let x = 10 (global), function foo() { let y = 5 } (local)",
+    subTopic: "Variables and Constants",
   },
   {
     question: "What is a constant?",
     answer:
-      "A constant is a variable whose value cannot be changed once it's assigned during program execution.",
-    subTopic: "Variables",
+      "A variable whose value cannot be changed once set. For example: const PI = 3.14;",
+    subTopic: "Variables and Constants",
   },
 
-  // Functions
+  // 2. Functions and Recursion
   {
     question: "What does 'function' mean in programming?",
-    answer: "A block of code designed to perform a particular task.",
-    subTopic: "Functions",
+    answer:
+      "A reusable block of code that performs a task. For example: function greet() { console.log('Hi'); }",
+    subTopic: "Functions and Recursion",
   },
   {
     question: "What are function parameters?",
     answer:
-      "Variables listed in the function definition that act as placeholders for values passed to the function when it's called.",
-    subTopic: "Functions",
+      "Placeholders used in a function definition. For example: function greet(name) { console.log('Hi ' + name); }",
+    subTopic: "Functions and Recursion",
   },
   {
     question: "What is the difference between parameters and arguments?",
     answer:
-      "Parameters are variables in the function definition, while arguments are the actual values passed to the function when it's called.",
-    subTopic: "Functions",
+      "Parameters are used when defining a function; arguments are values passed when calling it. For example: greet('Hamza'); 'Hamza' is the argument.",
+    subTopic: "Functions and Recursion",
   },
   {
     question: "What is a return statement?",
     answer:
-      "A statement that exits a function and optionally passes a value back to the caller.",
-    subTopic: "Functions",
-  },
-  {
-    question: "What is function overloading?",
-    answer:
-      "The ability to define multiple functions with the same name but different parameters (number, type, or order).",
-    subTopic: "Functions",
+      "It ends a function and optionally sends back a value. For example: return x + y; returns the sum.",
+    subTopic: "Functions and Recursion",
   },
   {
     question: "What is recursion?",
     answer:
-      "A programming technique where a function calls itself to solve a problem by breaking it down into smaller, similar subproblems.",
-    subTopic: "Functions",
+      "A function calling itself to solve smaller parts of a problem. For example: Calculating factorial (n!) using recursion.",
+    subTopic: "Functions and Recursion",
+  },
+  {
+    question: "What is function overloading?",
+    answer:
+      "Defining functions with the same name but different parameters (in languages that support it). For example: in C++, int add(int), float add(float)",
+    subTopic: "Functions and Recursion",
+  },
+  {
+    question: "What is a pure function?",
+    answer:
+      "A function that gives the same output for the same input and has no side effects. For example: function square(x) { return x * x; }",
+    subTopic: "Functions and Recursion",
   },
 
-  // Loops
+  // 3. Control Flow and Conditionals
+  {
+    question: "What is control flow?",
+    answer:
+      "The order in which code is executed. For example: if → then → else → end",
+    subTopic: "Control Flow and Conditionals",
+  },
+  {
+    question: "What is a conditional statement?",
+    answer:
+      "It lets the program make decisions. For example: if (age > 18) { console.log('Adult'); }",
+    subTopic: "Control Flow and Conditionals",
+  },
+  {
+    question: "What is the difference between 'if' and 'switch' statements?",
+    answer:
+      "'If' handles complex conditions; 'switch' handles multiple exact values. For example: switch(day) { case 'Mon': ... }",
+    subTopic: "Control Flow and Conditionals",
+  },
+  {
+    question: "What are logical operators?",
+    answer:
+      "Used to combine conditions. AND (&&), OR (||), NOT (!). For example: if (age > 18 && hasID) {...}",
+    subTopic: "Control Flow and Conditionals",
+  },
+  {
+    question: "What is a ternary operator?",
+    answer:
+      "A shorthand for if-else: condition ? valueIfTrue : valueIfFalse. For example: let result = age >= 18 ? 'Adult' : 'Minor';",
+    subTopic: "Control Flow and Conditionals",
+  },
+  {
+    question: "What is short-circuit evaluation?",
+    answer:
+      "In logical expressions, evaluation stops early if the result is already known. For example: false && doSomething() // doSomething is never called.",
+    subTopic: "Control Flow and Conditionals",
+  },
+  {
+    question: "What is exception handling?",
+    answer:
+      "Mechanism to catch and handle runtime errors. For example: try { riskyCode() } catch(error) { console.log('Error caught') }",
+    subTopic: "Control Flow and Conditionals",
+  },
+
+  // 4. Loops and Iteration
   {
     question: "What is a loop?",
     answer:
-      "A control structure that repeats a block of code while a condition is true.",
-    subTopic: "Loops",
+      "A structure that repeats code. For example: for (let i = 0; i < 5; i++) { console.log(i); }",
+    subTopic: "Loops and Iteration",
   },
   {
     question: "What are the three main types of loops?",
     answer:
-      "For loop (known number of iterations), While loop (condition-based), and Do-while loop (executes at least once).",
-    subTopic: "Loops",
+      "For (known times), While (condition), Do-While (executes once before checking).",
+    subTopic: "Loops and Iteration",
   },
   {
     question: "What is an infinite loop?",
     answer:
-      "A loop that continues indefinitely because its terminating condition never becomes false.",
-    subTopic: "Loops",
+      "A loop that never ends because the condition never becomes false. For example: while(true) { ... }",
+    subTopic: "Loops and Iteration",
   },
   {
     question:
       "What is the difference between 'break' and 'continue' statements?",
     answer:
-      "'Break' exits the loop completely, while 'continue' skips the rest of the current iteration and moves to the next iteration.",
-    subTopic: "Loops",
+      "'break' exits the loop; 'continue' skips to the next iteration. For example: if (x > 5) break;",
+    subTopic: "Loops and Iteration",
   },
   {
     question: "What is a nested loop?",
     answer:
-      "A loop inside another loop. The inner loop executes completely for each iteration of the outer loop.",
-    subTopic: "Loops",
+      "A loop inside another loop. For example: used to print matrix patterns or grids.",
+    subTopic: "Loops and Iteration",
   },
 
-  // Conditional Statements
-  {
-    question: "What is a conditional statement?",
-    answer:
-      "A control structure that allows the program to make decisions based on certain conditions.",
-    subTopic: "Conditional Statements",
-  },
-  {
-    question: "What is the difference between 'if' and 'switch' statements?",
-    answer:
-      "'If' statements evaluate boolean expressions and can handle complex conditions, while 'switch' statements compare a variable against multiple constant values.",
-    subTopic: "Conditional Statements",
-  },
-  {
-    question: "What are logical operators?",
-    answer:
-      "Operators that combine or modify boolean expressions: AND (&&), OR (||), and NOT (!).",
-    subTopic: "Conditional Statements",
-  },
-  {
-    question: "What is a ternary operator?",
-    answer:
-      "A shorthand conditional operator that evaluates a condition and returns one of two values: condition ? value_if_true : value_if_false.",
-    subTopic: "Conditional Statements",
-  },
-  {
-    question: "What is short-circuit evaluation?",
-    answer:
-      "An optimization where the second operand of a logical operator is not evaluated if the result can be determined from the first operand alone.",
-    subTopic: "Conditional Statements",
-  },
-
-  // Arrays
-  {
-    question: "What is an array?",
-    answer:
-      "A collection of elements of the same type stored in contiguous memory locations.",
-    subTopic: "Arrays",
-  },
-  {
-    question: "What is array indexing?",
-    answer:
-      "The method of accessing array elements using their position number, typically starting from 0 (zero-based indexing).",
-    subTopic: "Arrays",
-  },
-  {
-    question: "What is the difference between static and dynamic arrays?",
-    answer:
-      "Static arrays have a fixed size determined at compile time, while dynamic arrays can change size during runtime.",
-    subTopic: "Arrays",
-  },
-  {
-    question: "What is a multidimensional array?",
-    answer:
-      "An array that contains other arrays as elements, creating a matrix-like structure with rows and columns.",
-    subTopic: "Arrays",
-  },
-  {
-    question: "What are common array operations?",
-    answer:
-      "Insertion, deletion, searching, sorting, traversal, and accessing elements by index.",
-    subTopic: "Arrays",
-  },
-
-  // Data Types
+  // 5. Data Types and Structures
   {
     question: "What are primitive data types?",
     answer:
-      "Basic data types provided by a programming language, such as integers, floating-point numbers, characters, and booleans.",
-    subTopic: "Data Types",
+      "Basic types like number, string, boolean. For example: let x = true;",
+    subTopic: "Data Types and Structures",
   },
   {
     question:
       "What is the difference between integer and floating-point numbers?",
     answer:
-      "Integers are whole numbers without decimal points, while floating-point numbers can represent decimal values.",
-    subTopic: "Data Types",
+      "Integers are whole numbers (e.g. 3), floats have decimals (e.g. 3.14).",
+    subTopic: "Data Types and Structures",
   },
   {
     question: "What is a boolean data type?",
     answer:
-      "A data type that can only hold two values: true or false, used for logical operations.",
-    subTopic: "Data Types",
+      "It represents true or false values. Used in logic. For example: let isLoggedIn = false;",
+    subTopic: "Data Types and Structures",
   },
   {
     question: "What is type casting?",
     answer:
-      "The process of converting a value from one data type to another, either implicitly (automatic) or explicitly (manual).",
-    subTopic: "Data Types",
+      "Converting one type to another. For example: Number('5') turns '5' into 5.",
+    subTopic: "Data Types and Structures",
   },
   {
     question: "What are reference types vs value types?",
     answer:
-      "Value types store the actual data, while reference types store a reference (address) to the data in memory.",
-    subTopic: "Data Types",
+      "Value types hold actual values (like numbers). Reference types hold memory addresses (like arrays, objects).",
+    subTopic: "Data Types and Structures",
+  },
+  {
+    question: "What is an array?",
+    answer:
+      "A list of values in one variable. For example: let fruits = ['apple', 'banana'];",
+    subTopic: "Data Types and Structures",
+  },
+  {
+    question: "What is array indexing?",
+    answer:
+      "Accessing items by position. Index starts at 0. For example: fruits[0] returns 'apple'",
+    subTopic: "Data Types and Structures",
+  },
+  {
+    question: "What is a multidimensional array?",
+    answer: "An array of arrays. For example: let matrix = [[1, 2], [3, 4]];",
+    subTopic: "Data Types and Structures",
+  },
+  {
+    question: "What are common array operations?",
+    answer:
+      "Adding, removing, searching, or looping over elements. For example: push(), pop(), indexOf(), forEach().",
+    subTopic: "Data Types and Structures",
   },
 
-  // Control Flow
-  {
-    question: "What is control flow?",
-    answer:
-      "The order in which individual statements, instructions, or function calls are executed in a program.",
-    subTopic: "Control Flow",
-  },
-  {
-    question: "What is sequential execution?",
-    answer:
-      "The default flow where statements are executed one after another in the order they appear.",
-    subTopic: "Control Flow",
-  },
+  // 6. Programming Basics and Best Practices
   {
     question: "What are the three basic control structures?",
     answer:
-      "Sequence (linear execution), Selection (conditional branching), and Iteration (loops).",
-    subTopic: "Control Flow",
+      "Sequence (run one by one), Selection (if/switch), Iteration (loops).",
+    subTopic: "Programming Basics",
   },
   {
-    question: "What is exception handling?",
+    question: "What is pseudocode?",
     answer:
-      "A programming construct that allows programs to respond to exceptional circumstances during execution by transferring control to special handlers.",
-    subTopic: "Control Flow",
+      "A human-readable way to describe what a program does without real code. Example: Start → Get Input → Check → Print Result → End.",
+    subTopic: "Programming Basics",
+  },
+  {
+    question: "What is debugging?",
+    answer:
+      "The process of finding and fixing errors in code. For example: using console.log to trace variables.",
+    subTopic: "Programming Basics",
+  },
+  {
+    question: "What is a syntax error?",
+    answer:
+      "An error caused by writing code that breaks the language rules. For example: missing a closing bracket.",
+    subTopic: "Programming Basics",
+  },
+  {
+    question: "What is a logical error?",
+    answer:
+      "The program runs but gives incorrect results due to wrong logic. Harder to detect than syntax errors.",
+    subTopic: "Programming Basics",
   },
 ];
 

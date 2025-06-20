@@ -3,7 +3,7 @@ const reactQuestions = [
     question: "What is React?",
     answer:
       "React is a JavaScript library for building user interfaces. It uses a component-based architecture and a virtual DOM for efficient rendering.",
-    subTopic: "React Basics",
+    subTopic: "Core Concepts",
   },
   {
     question: "What are components in React?",
@@ -21,13 +21,13 @@ const reactQuestions = [
     question: "What is JSX?",
     answer:
       "JSX stands for JavaScript XML. It allows you to write HTML-like syntax in JavaScript, which React transforms into React.createElement() calls.",
-    subTopic: "JSX",
+    subTopic: "Core Concepts",
   },
   {
     question: "What is the Virtual DOM?",
     answer:
       "A lightweight JavaScript representation of the real DOM. React updates the virtual DOM and efficiently syncs it with the real DOM via diffing.",
-    subTopic: "React Basics",
+    subTopic: "Core Concepts",
   },
   {
     question: "What are hooks in React?",
@@ -51,7 +51,7 @@ const reactQuestions = [
     question: "What is controlled vs uncontrolled components?",
     answer:
       "Controlled: Form data is handled by React state. Uncontrolled: Form data is handled by the DOM (via refs).",
-    subTopic: "Forms",
+    subTopic: "Forms & Events",
   },
   {
     question: "What is lifting state up in React?",
@@ -63,25 +63,25 @@ const reactQuestions = [
     question: "What is context in React?",
     answer:
       "Context lets you pass data (like themes or auth) deeply through the component tree without using props at every level.",
-    subTopic: "Context",
+    subTopic: "State Management",
   },
   {
     question: "How does React handle forms?",
     answer:
       "Through controlled components using onChange handlers to update state as users type.",
-    subTopic: "Forms",
+    subTopic: "Forms & Events",
   },
   {
     question: "What are keys in React and why are they important?",
     answer:
       "Keys help React identify which items have changed, are added, or removed in a list. They must be unique and stable.",
-    subTopic: "Lists",
+    subTopic: "Lists & Rendering",
   },
   {
     question: "What is reconciliation in React?",
     answer:
       "The process of comparing the new virtual DOM with the previous one and applying the minimal set of changes to the real DOM.",
-    subTopic: "Performance",
+    subTopic: "Performance & Optimization",
   },
   {
     question:
@@ -94,7 +94,7 @@ const reactQuestions = [
     question: "What is memoization in React?",
     answer:
       "Caching the result of expensive computations to avoid recalculating. Used via React.memo, useMemo, and useCallback.",
-    subTopic: "Performance",
+    subTopic: "Performance & Optimization",
   },
   {
     question: "What is useMemo and when should you use it?",
@@ -117,7 +117,7 @@ const reactQuestions = [
     question: "What is the purpose of React.Fragment?",
     answer:
       "Lets you group multiple elements without adding extra nodes to the DOM.",
-    subTopic: "JSX",
+    subTopic: "Core Concepts",
   },
 ];
 

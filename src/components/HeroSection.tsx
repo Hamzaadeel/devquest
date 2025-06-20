@@ -204,7 +204,7 @@ export default function HeroSection() {
         {/* Navigation Arrows */}
         <button
           onClick={goToPrev}
-          className="absolute left-6 top-1/2 -translate-y-1/2 bg-transparent backdrop-blur-sm hover:bg-white/30 dark:hover:bg-gray-700/60 text-white rounded-full p-3 transition-all duration-300 hover:scale-110 z-30"
+          className="hidden sm:block absolute left-6 top-1/2 -translate-y-1/2 bg-transparent backdrop-blur-sm hover:bg-white/30 dark:hover:bg-gray-700/60 text-white rounded-full p-3 transition-all duration-300 hover:scale-110 z-30"
         >
           <svg
             width="24"
@@ -224,7 +224,7 @@ export default function HeroSection() {
 
         <button
           onClick={goToNext}
-          className="absolute right-6 top-1/2 -translate-y-1/2 bg-transparent backdrop-blur-sm hover:bg-white/30 dark:hover:bg-gray-700/60 text-white rounded-full p-3 transition-all duration-300 hover:scale-110 z-30"
+          className="hidden sm:block absolute right-6 top-1/2 -translate-y-1/2 bg-transparent backdrop-blur-sm hover:bg-white/30 dark:hover:bg-gray-700/60 text-white rounded-full p-3 transition-all duration-300 hover:scale-110 z-30"
         >
           <svg
             width="24"

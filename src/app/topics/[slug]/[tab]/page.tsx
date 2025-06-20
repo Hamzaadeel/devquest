@@ -115,7 +115,12 @@ export default function TopicPage() {
           // For cheatsheets, look for a named export with the topic name
           const namedExport =
             moduleImport[`${slug.replace(/-/g, "")}CheatSheet`];
-          content = namedExport || moduleImport.default || [];
+          let cheatsheetContent = namedExport || moduleImport.default || [];
+          // Normalize: if not an array, wrap in array
+          if (!Array.isArray(cheatsheetContent)) {
+            cheatsheetContent = [cheatsheetContent];
+          }
+          content = cheatsheetContent;
         } else {
           content = moduleImport.default || [];
         }
@@ -152,8 +157,12 @@ export default function TopicPage() {
         ]);
 
         console.log("Loaded content:", {
-          flashcards: flashcards.length,
-          cheatsheets: cheatsheets.length,
+          flashcards: Array.isArray(flashcards)
+            ? flashcards.length
+            : typeof flashcards,
+          cheatsheets: Array.isArray(cheatsheets)
+            ? cheatsheets.length
+            : typeof cheatsheets,
         });
 
         setContentData({

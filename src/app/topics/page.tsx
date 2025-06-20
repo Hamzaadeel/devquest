@@ -186,18 +186,6 @@ const TopicsPage = () => {
                       }
                     </div>
 
-                    {/* Stats
-                    <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
-                      <span className="flex items-center gap-1">
-                        <BookOpen size={12} />
-                        {topic.lessonsCount} lessons
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Clock size={12} />
-                        {topic.estimatedTime}
-                      </span>
-                    </div> */}
-
                     {/* Progress Bar */}
                     <div className="mt-4 h-2 rounded-full overflow-hidden bg-gray-100 dark:bg-gray-700">
                       <motion.div
@@ -235,14 +223,6 @@ const TopicsPage = () => {
             </div>
             <div className="mt-1 text-gray-600 dark:text-gray-300">
               Total Topics
-            </div>
-          </div>
-          <div className="rounded-2xl p-6 text-center transition-colors duration-300 bg-white dark:bg-gray-800/50 border border-gray-200/50 dark:border-gray-700/50">
-            <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
-              {allTopics.reduce((sum, topic) => sum + topic.lessonsCount, 0)}
-            </div>
-            <div className="mt-1 text-gray-600 dark:text-gray-300">
-              Total Lessons
             </div>
           </div>
           <div className="rounded-2xl p-6 text-center transition-colors duration-300 bg-white dark:bg-gray-800/50 border border-gray-200/50 dark:border-gray-700/50">
