@@ -101,7 +101,7 @@ export default function TopicPage() {
 
         const fileName = fileMap[contentType] || contentType;
         // Add detailed log for the import path
-        const importPath = `@/app/data/topics/${slug}/${fileName}.ts`;
+        // const importPath = `@/app/data/topics/${slug}/${fileName}.ts`;
         const moduleImport = await import(
           `../../../data/topics/${slug}/${fileName}.ts`
         );
