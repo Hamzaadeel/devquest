@@ -100,12 +100,8 @@ export default function TopicPage() {
         };
 
         const fileName = fileMap[contentType] || contentType;
-        console.log(
-          `Loading ${contentType} from ${fileName}.ts for topic ${slug}`
-        );
         // Add detailed log for the import path
         const importPath = `@/app/data/topics/${slug}/${fileName}.ts`;
-        console.log(`Attempting dynamic import from:`, importPath);
         const moduleImport = await import(
           `../../../data/topics/${slug}/${fileName}.ts`
         );
@@ -155,15 +151,6 @@ export default function TopicPage() {
           loadContent("flashcards") as Promise<Flashcard[]>,
           loadContent("cheatsheets") as Promise<Cheatsheet[]>,
         ]);
-
-        console.log("Loaded content:", {
-          flashcards: Array.isArray(flashcards)
-            ? flashcards.length
-            : typeof flashcards,
-          cheatsheets: Array.isArray(cheatsheets)
-            ? cheatsheets.length
-            : typeof cheatsheets,
-        });
 
         setContentData({
           flashcards,

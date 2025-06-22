@@ -12,7 +12,7 @@ const roadmaps = {
     slug: "frontend",
     icon: Code,
     gradient: "from-blue-500 to-purple-600",
-    image: "../../../../images/roadmaps/frontend.jpeg", // Add your image path here
+    image: "/images/roadmaps/frontend.jpeg", // Add your image path here
     steps: [
       { name: "HTML", description: "Learn the structure of web content." },
       {
@@ -30,7 +30,7 @@ const roadmaps = {
     slug: "backend",
     icon: Server,
     gradient: "from-purple-500 to-blue-600",
-    image: "../../../../images/roadmaps/backend.jpg", // Add your image path here
+    image: "/images/roadmaps/backend.jpg", // Add your image path here
     steps: [
       {
         name: "JavaScript",
@@ -51,7 +51,7 @@ const roadmaps = {
     slug: "fullstack",
     icon: Layers,
     gradient: "from-blue-600 to-purple-500",
-    image: "../../../../images/roadmaps/fullstack.jpeg", // Add your image path here
+    image: "/images/roadmaps/fullstack.jpeg", // Add your image path here
     steps: [
       { name: "HTML", description: "Structure content for the web." },
       {
@@ -211,13 +211,17 @@ const RoadmapCard = ({ roadmap, index }: RoadmapCardProps) => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="relative w-full h-40 mb-4 rounded-lg overflow-hidden">
-                <Image
-                  src={roadmap.image}
-                  alt={`${roadmap.title} illustration`}
-                  fill
-                  className="w-full h-full object-cover"
-                />
+              <div className="relative w-full h-52 mb-4 rounded-lg overflow-hidden">
+                <div className="relative w-full aspect-[4/3]">
+                  <Image
+                    src={roadmap.image}
+                    alt={`${roadmap.title} illustration`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    className="object-cover object-top"
+                  />
+                </div>
+
                 <div
                   className={`absolute inset-0 bg-gradient-to-t ${roadmap.gradient} opacity-20`}
                 />
